@@ -1,0 +1,2 @@
+class Trick < ApplicationRecord
+end

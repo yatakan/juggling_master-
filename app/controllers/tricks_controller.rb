@@ -1,0 +1,2 @@
+class TricksController < ApplicationController
+end
