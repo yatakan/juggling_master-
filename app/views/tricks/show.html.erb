@@ -1,0 +1,9 @@
+<h1> あなたの<%= @trick.name %>の記録 </h1>
+  <div class="container">
+  <h2><%= @trick.name %> ーー <%= current_user.name %>さんの成長記録</h2>
+  <div>
+    <canvas id="myChart"></canvas>
+    <script src="charttt.js"></script>
+  </div>
+  <p id="caption">あなたの<%= @trick.name %>の練習記録です。</p>
+</div>

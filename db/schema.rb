@@ -10,31 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170823062750) do
+ActiveRecord::Schema.define(version: 20170824092224) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "type",       null: false
-    t.integer  "number",     null: false
+    t.string   "material",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "trick_id",   null: false
-    t.integer  "user_id",    null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "trick_id",                  null: false
+    t.integer  "user_id",                   null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.integer  "catch"
+    t.text     "text",        limit: 65535
+    t.date     "date"
+    t.integer  "category_id"
+    t.integer  "number"
+    t.index ["category_id"], name: "index_records_on_category_id", using: :btree
     t.index ["trick_id"], name: "index_records_on_trick_id", using: :btree
     t.index ["user_id"], name: "index_records_on_user_id", using: :btree
   end
 
   create_table "tricks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",        null: false
-    t.integer  "category_id", null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["category_id"], name: "index_tricks_on_category_id", using: :btree
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -55,4 +57,5 @@ ActiveRecord::Schema.define(version: 20170823062750) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "records", "categories"
 end

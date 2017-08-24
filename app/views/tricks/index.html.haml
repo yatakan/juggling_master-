@@ -1,0 +1,10 @@
+%h1 練習記録をみる
+%ul
+  = form_tag records_tricks_path, method: :get do
+    = select_tag :number, options_for_select(@numbers.map do |num| num end)
+    = select_tag :category_id, options_for_select(Category.all.map do |cate| [cate.material, cate.id] end)
+    = select_tag :trick_id, options_for_select(@tricks.map do |tri| [tri.name, tri.id] end)
+    = submit_tag "検索する"
+
+- if flash[:notice]
+  %p= flash[:notice]

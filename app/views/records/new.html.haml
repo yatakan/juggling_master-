@@ -1,4 +1,8 @@
+%h1 新しいレコードを登録する
 = form_for @record do |f|
+  = f.select :number, options_for_select(@numbers), {}, class: "numbers"
+  = f.collection_select :category_id, Category.all, :id, :material
   = f.collection_select :trick_id, Trick.all, :id, :name
-  = f.text_field :catch
-  = f.submit
+  = f.text_field :catch, placeholder:"キャッチ数"
+  = f.text_field :text, placeholder:"一言どうぞ !!"
+  = f.submit "登録する"
