@@ -1,0 +1,4 @@
+%h1 コメントを書く
+= form_for [@record, @comment] do |f|
+  = f.text_area :text, placeholder:"ここにコメントを入力してください", autofocus: true
+  = f.submit "コメントを投稿する"

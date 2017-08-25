@@ -4,7 +4,8 @@
   = select_tag :category_id, options_for_select(Category.all.map do |cate| [cate.material, cate.id] end)
   = select_tag :trick_id, options_for_select(@tricks.map do |tri| [tri.name, tri.id] end)
   = text_field_tag :catch, "", placeholder:"キャッチ数"
-  = text_field_tag :text, "", placeholder:"一言どうぞ !!"
+  %br
+  = text_area_tag :text, "", placeholder:"一言どうぞ !!"
   = submit_tag "登録する"
 - if flash[:notice]
   %p= flash[:notice]

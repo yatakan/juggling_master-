@@ -1,23 +1,37 @@
 %h2 Sign up
 = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
   = devise_error_messages!
+  %p ＊のある項目は必須です。
+  %p 入力したプロフィールはみんなから見れるようになります !!
   .field
-    = f.label :name
+    = f.label :name, "ニックネーム＊"
     %br/
-    = f.text_field :name, autofocus: true
+    = f.text_field :name, placeholder:"あなたのニックネーム又は本名", autofocus: true
   .field
-    = f.label :email
+    = f.label :material, "主に練習している道具＊"
+    %br/
+    = f.text_field :material
+  .field
+    = f.label :club, "所属しているチーム又はサークル"
+    %br/
+    = f.text_field :club
+  .field
+    = f.label :text, "自己紹介"
+    %br/
+    = f.text_area :text
+  .field
+    = f.label :email, "メールアドレス＊"
     %br/
     = f.email_field :email
   .field
-    = f.label :password
+    = f.label :password, "希望するパスワード＊"
     - if @minimum_password_length
       %em
         (#{@minimum_password_length} characters minimum)
     %br/
     = f.password_field :password, autocomplete: "off"
   .field
-    = f.label :password_confirmation
+    = f.label :password_confirmation, "希望するパスワードをもう１度入力してください＊"
     %br/
     = f.password_field :password_confirmation, autocomplete: "off"
   .actions

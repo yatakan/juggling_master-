@@ -1,6 +1,12 @@
 class RecordsController < ApplicationController
   before_action :authenticate_user!
   def index
+    @comments = Comment.all.limit(10)
+  end
+
+  def show
+    @record = Record.find(params[:id])
+    @comments = @record.comments
   end
 
   def new

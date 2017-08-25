@@ -1,0 +1,13 @@
+%h1 レコードの詳細ページ
+%div
+  %ul
+    %li #{@record.date}
+    %li #{@record.number} #{@record.category.material} #{@record.trick.name}
+    %li #{@record.catch} キャッチ
+    - if @record.text.present?
+      %li #{@record.text}
+%h1 この投稿へのコメント
+= link_to "コメントを書く", new_record_comment_path(@record)
+- @comments.each do |comment|
+  %h3 投稿者：#{comment.user.name}
+  %p #{comment.text}

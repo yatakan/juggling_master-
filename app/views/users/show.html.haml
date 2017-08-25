@@ -1,0 +1,20 @@
+%h1 #{@user.name}さんのマイページ
+%h2 よく練習している道具
+%p #{@user.material}
+%h2 所属しているサークル
+%p #{@user.club}
+%h2 自己紹介
+%p #{@user.text}
+%h2 合計キャッチ数
+%p #{@catches}
+
+%h1 最近の達成
+- @records.each do |record|
+  = link_to record_path(record) do
+    %div
+      %ul
+        %li #{record.date}
+        %li #{record.number} #{record.category.material} #{record.trick.name}
+        %li #{record.catch} キャッチ
+        - if record.text.present?
+          %li コメント： #{record.text}
