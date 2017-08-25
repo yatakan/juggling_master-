@@ -16,7 +16,7 @@
         - if user_signed_in?
           %li= link_to 'マイページ', user_path(current_user)
           %li= link_to 'ログアウト', destroy_user_session_path, method: :delete
-          %li= link_to '記事を書く', articles_new_path
+          %li= link_to '記事を書く', new_article_path
         - else
           %li= link_to '新規登録', new_user_registration_path
           %li= link_to 'ログイン', new_user_session_path

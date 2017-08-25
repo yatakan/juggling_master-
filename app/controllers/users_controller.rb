@@ -9,5 +9,6 @@ class UsersController < ApplicationController
     @records.each do |record|
       @catches += record.catch
     end
+    @articles = @user.articles
   end
 end

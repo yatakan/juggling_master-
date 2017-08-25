@@ -6,4 +6,5 @@ class User < ApplicationRecord
   validates :name, presence: true
   has_many :records
   has_many :comments
+  has_many :articles
 end

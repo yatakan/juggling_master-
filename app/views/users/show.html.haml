@@ -18,3 +18,8 @@
         %li #{record.catch} キャッチ
         - if record.text.present?
           %li コメント： #{record.text}
+
+%h1 書いた記事
+%ul
+  - @articles.each do |article|
+    %li= link_to article.title, article_path(article)

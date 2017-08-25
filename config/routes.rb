@@ -1,12 +1,4 @@
 Rails.application.routes.draw do
-  get 'articles/index'
-
-  get 'articles/show'
-
-  get 'articles/new'
-
-  post 'articles/create'
-
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'records#index'
@@ -21,4 +13,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:new,:create]
   end
   resources :users, only: [:index, :show]
+  resources :articles do
+    resources :article_comments
+  end
 end
