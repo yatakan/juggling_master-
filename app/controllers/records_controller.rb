@@ -1,19 +1,37 @@
 class RecordsController < ApplicationController
+  before_action :authenticate_user!
   def index
   end
 
   def new
-    @record = Record.new
+    @tricks = Trick.all
     @numbers = (1..13).to_a
   end
 
   def create
-    # @record = Record.where.first_or_initialize(params[:]
-    redirect_to root_path
+    @trick = Trick.find(params[:trick_id])
+    @category = Category.find(params[:category_id])
+    @number = params[:number]
+    @record = @trick.records.where(user_id: current_user.id).where(number: @number).where(category_id: @category).where(date: Date.today).first_or_initialize
+    if @record.id
+      update_date
+      redirect_to new_record_path, notice: "同じ技は１日１つしかデータを保存できません。上書きしました"
+    else
+      update_date
+      redirect_to new_record_path, notice: "保存しました！"
+    end
   end
 
   private
-  def record_params
-    params.require(:record).permit(:catch, :trick_id, :category_id, :number, :text).merge(user_id: current_user.id, date: Date.today)
+
+  def update_date
+    @record.trick_id = params[:trick_id]
+    @record.category_id = params[:category_id]
+    @record.user_id = current_user.id
+    @record.catch = params[:catch]
+    @record.number = params[:number]
+    @record.text = params[:text]
+    @record.date = Date.today
+    @record.save
   end
 end
