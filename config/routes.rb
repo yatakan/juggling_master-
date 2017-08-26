@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   end
   resources :records do
     resources :comments, only: [:new,:create]
+    collection do
+      get 'about'
+    end
   end
   resources :users, only: [:index, :show]
   resources :articles do

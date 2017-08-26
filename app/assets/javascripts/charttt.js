@@ -7,38 +7,14 @@ $(document).on('turbolinks:load', function() {
     original.call(this, e, legendItem);
   };
 
-  var numbers = []
-  for(var i = 0; i < 30; i++){
-    numbers.push(i + "日")
-  }
-
-  var quantity = []
-  for(var i = 0; i < 30; i++){
-    num = String(Math.floor( Math.random() * 100 ) + i * 20)
-    quantity.push(num)
-  }
-
-  var quantity2 = []
-  for(var i = 0; i < 30; i++){
-    num = String(Math.floor( Math.random() * 100 ) + i * 25)
-    quantity2.push(num)
-  }
-
-  console.log(numbers)
-  console.log(quantity)
-
   var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
       labels: gon.date,
       datasets: [{
-        label: '三浦さんのキャッチ数',
+        label: gon.nickname + 'さんのキャッチ数',
         backgroundColor: "rgba(153,255,51,1)",
         data: gon.records
-      },{
-        label: 'あなたのライバル',
-        backgroundColor: "rgba(255,153,0,1)",
-        data: quantity2
       }]
     }
   });

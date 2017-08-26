@@ -1,4 +1,4 @@
 class Article < ApplicationRecord
-  has_many :comments
+  has_many :article_comments
   belongs_to :user
 end

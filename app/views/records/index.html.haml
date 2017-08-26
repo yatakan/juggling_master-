@@ -13,3 +13,7 @@
     = link_to comment.user.name, user_path(comment.user)
     %p= comment.text
 %p= link_to 'もっと見る', comments_path
+%h1 投稿された記事
+%ul
+  - @article.each do |article|
+    %li= link_to article.title, article_path(article)

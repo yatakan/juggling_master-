@@ -4,6 +4,7 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    @article_comments = @article.article_comments
   end
 
   def new

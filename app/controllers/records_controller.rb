@@ -1,7 +1,9 @@
 class RecordsController < ApplicationController
   before_action :authenticate_user!
   def index
-    @comments = Comment.all.limit(10)
+    ## ルートページです
+    @comments = Comment.all.limit(5)
+    @article = Article.all.limit(5)
   end
 
   def show
@@ -28,8 +30,10 @@ class RecordsController < ApplicationController
     end
   end
 
-  private
+  def about
+  end
 
+  private
   def update_date
     @record.trick_id = params[:trick_id]
     @record.category_id = params[:category_id]

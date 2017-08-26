@@ -1,7 +1,6 @@
-%h1 記事を書く
-%p ジャグリングについて、なんでもおもったことを書いてみましょう！
+%h1 記事にコメントをする
+%p 良いねと思ったら気持ちを伝えてみましょう！
 
-= form_for @article do |f|
-  = f.text_field :title, autofocus: true
-  = f.text_area :text
+= form_for [@article, @article_comment] do |f|
+  = f.text_area :text, placeholder: "コメントを書いてください", autofocus: true
   = f.submit

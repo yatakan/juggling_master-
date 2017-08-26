@@ -11,6 +11,9 @@ class TricksController < ApplicationController
     @number = params[:number]
     @records = @trick.records.where(user_id: current_user.id).where(number: @number).where(category_id: @category)
 
+    @trick_name = "#{@number}#{@category.material}#{@trick.name}"
+    gon.trick = "#{@number}#{@category.material}#{@trick.name}"
+    gon.nickname = current_user.name
 
     gon.records = []
     gon.date = []
