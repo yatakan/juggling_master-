@@ -8,21 +8,22 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    %header
-      %h1= link_to "ジャグリングマスター", root_path
-      %p あなたの練習成果を記録する最高の手段
-      %p 練習の成果を共有、日記も書ける交流サイト。
-      %ul
-        - if user_signed_in?
-          %li= link_to 'マイページ', user_path(current_user)
-          %li= link_to 'ログアウト', destroy_user_session_path, method: :delete
-          %li= link_to '記事を書く', new_article_path
-        - else
-          %li= link_to '新規登録', new_user_registration_path
-          %li= link_to 'ログイン', new_user_session_path
-        %li= link_to 'このサイトについて', about_records_path
-      %hr
-    = yield
-    %footer
-      %hr
+    %header.navbar.navbar-fixed-top.navbar-inverse
+      .container
+        =link_to "ジャグリングマスター", root_path, id:"logo"
+        %p 練習の成果を共有、日記も書ける交流サイト。
+        %ul.nav.navbar-nav.navbar-right
+          - if user_signed_in?
+            %li= link_to '記事を書く', new_article_path
+            %li= link_to 'マイページ', user_path(current_user)
+            %li= link_to 'このサイトについて', about_records_path
+            %li= link_to 'ログアウト', destroy_user_session_path, method: :delete
+          - else
+            %li= link_to '新規登録', new_user_registration_path
+            %li= link_to 'ログイン', new_user_session_path
+            %li= link_to 'このサイトについて', about_records_path
+    .container
+      .padding-top
+        = yield
+    %footer.footer
       %p 制作：チームジャグリング
