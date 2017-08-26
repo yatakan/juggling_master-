@@ -1,8 +1,8 @@
 %h1=  @article.title
-%p= @article.text
+#article-text= simple_format(@article.text)
 = link_to "この記事にコメントする", new_article_article_comment_path(@article)
 %ul
   - if @article_comments
     - @article_comments.each do |comment|
       %li= comment.user.name
-      %li= comment.text
+      %li= simple_format(comment.text))

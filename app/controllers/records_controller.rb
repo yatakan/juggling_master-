@@ -3,7 +3,7 @@ class RecordsController < ApplicationController
   def index
     ## ルートページです
     @comments = Comment.all.limit(5)
-    @article = Article.all.limit(5)
+    @articles = Article.all.limit(5)
   end
 
   def show

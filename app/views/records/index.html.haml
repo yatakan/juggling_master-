@@ -1,3 +1,4 @@
+//TOPページです//
 %h1 メニュー
 %p データの登録と閲覧ができます。
 %p= link_to '登録する', new_record_path
@@ -9,11 +10,13 @@
 %p 人気技のランキングです。
 %h1 最近のコメント
 %ul
-  - @comments.each do |comment|
-    = link_to comment.user.name, user_path(comment.user)
-    %p= comment.text
+  - if @comments.present?
+    - @comments.each do |comment|
+      = link_to comment.user.name, user_path(comment.user)
+      %p= comment.text
 %p= link_to 'もっと見る', comments_path
 %h1 投稿された記事
 %ul
-  - @article.each do |article|
-    %li= link_to article.title, article_path(article)
+  - if @articles.present?
+    - @articles.each do |article|
+      %li= link_to article.title, article_path(article)
