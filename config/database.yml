@@ -47,8 +47,9 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+
 production:
   <<: *default
-  database: juggling_master_production
-  username: juggling_master
-  password: <%= ENV['JUGGLING_MASTER_DATABASE_PASSWORD'] %>
+  database: heroku_ff278d6caeb10a7
+  username: bb17126b9758f4
+  password: <%= ENV['DATABASE_PASSWORD'] %>
