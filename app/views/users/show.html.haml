@@ -1,3 +1,5 @@
+%p= link_to 'フォローする', "/follows/#{@user.id}", method: :POST
+
 %h1 #{@user.name}さんのマイページ
 %h2 よく練習している道具
 %p #{@user.material}

@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   resources :articles do
     resources :article_comments
   end
+  post '/follows/:id' => 'follows#create'
 end

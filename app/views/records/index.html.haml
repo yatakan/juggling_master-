@@ -6,8 +6,21 @@
 %h1 みんなのマイページ
 %p 他の利用者のページがみれます。
 %p= link_to '利用者一覧をみる', users_path
-%h1 ランキング
-%p 人気技のランキングです。
+%h1 最近投稿されたレコード
+- if @records.present?
+  - @records.each do |record|
+    %ul
+    %li #{record.date}
+    %li #{record.number} #{record.category.material} #{record.trick.name}
+    %li #{record.catch} キャッチ
+    - if record.text.present?
+      %li #{record.text}
+    %li #{record.user.name} さん
+%h1 投稿された記事
+%ul
+  - if @articles.present?
+    - @articles.each do |article|
+      %li= link_to article.title, article_path(article)
 %h1 最近のコメント
 %ul
   - if @comments.present?
@@ -15,8 +28,3 @@
       = link_to comment.user.name, user_path(comment.user)
       %p= comment.text
 %p= link_to 'もっと見る', comments_path
-%h1 投稿された記事
-%ul
-  - if @articles.present?
-    - @articles.each do |article|
-      %li= link_to article.title, article_path(article)

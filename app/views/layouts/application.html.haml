@@ -14,7 +14,9 @@
         %p 練習の成果を共有、日記も書ける交流サイト。
         %ul.nav.navbar-nav.navbar-right
           - if user_signed_in?
-            %li= link_to '記事を書く', new_article_path
+            %li= link_to '記録をする', new_record_path
+            %li= link_to '記録をみる', tricks_path
+            %li= link_to '日記を書く', new_article_path
             %li= link_to 'マイページ', user_path(current_user)
             %li= link_to 'このサイトについて', about_records_path
             %li= link_to 'ログアウト', destroy_user_session_path, method: :delete
@@ -26,4 +28,5 @@
       .padding-top
         = yield
     %footer.footer
+      %p= link_to 'トップへ戻る', root_path
       %p 制作：チームジャグリング

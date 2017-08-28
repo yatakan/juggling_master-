@@ -2,8 +2,9 @@ class RecordsController < ApplicationController
   before_action :authenticate_user!
   def index
     ## ルートページです
-    @comments = Comment.all.limit(5)
-    @articles = Article.all.limit(5)
+    @comments = Comment.order('created_at DESC').limit(5)
+    @articles = Article.order('created_at DESC').limit(5)
+    @records = Record.order('created_at DESC').limit(5)
   end
 
   def show
