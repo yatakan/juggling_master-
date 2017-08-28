@@ -9,8 +9,12 @@ class ArticleCommentsController < ApplicationController
 
   def create
     @article_comment = ArticleComment.new(comment_params)
-    @article_comment.save
-    redirect_to article_path(params[:article_id])
+    @article = Article.find(params[:article_id])
+    if @article_comment.save
+      redirect_to article_path(params[:article_id])
+    else
+      render :new
+    end
   end
 
   private

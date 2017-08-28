@@ -1,6 +1,13 @@
 %h1 記事にコメントをする
 %p 良いねと思ったら気持ちを伝えてみましょう！
 
+- if @article_comment.errors.any?
+  #error_explanation
+    %h2= "保存できませんでした"
+    %ul
+      - @article_comment.errors.full_messages.each do |msg|
+        %li= msg
+
 = form_for [@article, @article_comment] do |f|
-  = f.text_area :text, placeholder: "コメントを書いてください", autofocus: true
-  = f.submit
+  = f.text_area :text, placeholder: "コメントを書いてください(3000文字以内)", autofocus: true
+  = f.submit "コメントを投稿する"

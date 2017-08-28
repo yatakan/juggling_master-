@@ -1,4 +1,12 @@
 %h1 コメントを書く
+
+- if @comment.errors.any?
+  #error_explanation
+    %h2= "保存できませんでした"
+    %ul
+      - @comment.errors.full_messages.each do |msg|
+        %li= msg
+
 = form_for [@record, @comment] do |f|
-  = f.text_area :text, placeholder:"ここにコメントを入力してください", autofocus: true
+  = f.text_area :text, placeholder:"ここにコメントを入力してください。1000文字まで入力できます。", autofocus: true
   = f.submit "コメントを投稿する"

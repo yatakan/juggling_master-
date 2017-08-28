@@ -8,8 +8,13 @@ class CommentsController < ApplicationController
   end
 
   def create
-    Comment.create(comment_params)
-    redirect_to record_path(params[:record_id])
+    @comment = Comment.new(comment_params)
+    @record = Record.find(params[:record_id])
+    if @comment.save
+      redirect_to record_path(params[:record_id])
+    else
+      render 'new'
+    end
   end
 
   private

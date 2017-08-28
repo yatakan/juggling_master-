@@ -5,15 +5,25 @@
 %ol
   %li #見出し と書くと、その行は見出しになります！
   %li htmlタグはセキュリティ上使用できません。
-  %li 機種依存文字を使うと、登録時にエラー
+  %li 機種依存文字を使うと、エラーが起きます！
+  %li 入力フォームが空の場合は、エラーを返します！
+  %li タイトルは128文字までです。
+  %li 本文は30000文字まで入力できます！ 長くなりそうな時は記事を分けてください。
+
+- if @article.errors.any?
+  #error_explanation
+    %h2= "保存できませんでした"
+    %ul
+      - @article.errors.full_messages.each do |msg|
+        %li= msg
 
 = form_for @article do |f|
   = f.label :title, "タイトル"
   %br
-  = f.text_field :title, autofocus: true, class:"article-title"
+  = f.text_field :title, placeholder: "128文字まで入力できます", autofocus: true, class:"article-title"
   %br
   = f.label :text, "本文"
   %br
-  = f.text_area :text, class:"article-text"
+  = f.text_area :text, placeholder: "30000文字まで入力できます", class:"article-text"
   %br
   = f.submit "記事を投稿する"
