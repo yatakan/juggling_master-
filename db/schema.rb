@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170828064258) do
+ActiveRecord::Schema.define(version: 20170829113025) do
 
   create_table "article_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text     "text",       limit: 65535
@@ -48,10 +48,13 @@ ActiveRecord::Schema.define(version: 20170828064258) do
   end
 
   create_table "follows", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "follow_id"
     t.integer  "follower_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "following_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["follower_id", "following_id"], name: "index_follows_on_follower_id_and_following_id", unique: true, using: :btree
+    t.index ["follower_id"], name: "index_follows_on_follower_id", using: :btree
+    t.index ["following_id"], name: "index_follows_on_following_id", using: :btree
   end
 
   create_table "records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -67,6 +70,16 @@ ActiveRecord::Schema.define(version: 20170828064258) do
     t.index ["category_id"], name: "index_records_on_category_id", using: :btree
     t.index ["trick_id"], name: "index_records_on_trick_id", using: :btree
     t.index ["user_id"], name: "index_records_on_user_id", using: :btree
+  end
+
+  create_table "relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["followed_id"], name: "index_relationships_on_followed_id", using: :btree
+    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true, using: :btree
+    t.index ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
   end
 
   create_table "tricks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

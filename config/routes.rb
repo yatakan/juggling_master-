@@ -15,9 +15,13 @@ Rails.application.routes.draw do
       get 'about'
     end
   end
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show] do
+    member do
+      get :following, :followers
+    end
+  end
   resources :articles do
     resources :article_comments
   end
-  post '/follows/:id' => 'follows#create'
+  resources :relationships, only: [:create, :destroy]
 end
