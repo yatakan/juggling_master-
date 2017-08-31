@@ -1,0 +1,2 @@
+class ArticlesLike < ApplicationRecord
+end

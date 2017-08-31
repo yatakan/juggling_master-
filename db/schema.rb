@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170829113025) do
+ActiveRecord::Schema.define(version: 20170831030514) do
 
   create_table "article_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text     "text",       limit: 65535
@@ -29,6 +29,15 @@ ActiveRecord::Schema.define(version: 20170829113025) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.index ["user_id"], name: "index_articles_on_user_id", using: :btree
+  end
+
+  create_table "articles_likes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "article_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_articles_likes_on_article_id", using: :btree
+    t.index ["user_id"], name: "index_articles_likes_on_user_id", using: :btree
   end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -72,6 +81,15 @@ ActiveRecord::Schema.define(version: 20170829113025) do
     t.index ["user_id"], name: "index_records_on_user_id", using: :btree
   end
 
+  create_table "records_likes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "record_id",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["record_id"], name: "index_records_likes_on_record_id", using: :btree
+    t.index ["user_id"], name: "index_records_likes_on_user_id", using: :btree
+  end
+
   create_table "relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "follower_id"
     t.integer  "followed_id"
@@ -109,5 +127,9 @@ ActiveRecord::Schema.define(version: 20170829113025) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "articles_likes", "articles"
+  add_foreign_key "articles_likes", "users"
   add_foreign_key "records", "categories"
+  add_foreign_key "records_likes", "records"
+  add_foreign_key "records_likes", "users"
 end

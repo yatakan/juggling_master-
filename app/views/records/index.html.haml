@@ -6,25 +6,25 @@
 %h1 みんなのマイページ
 %p 他の利用者のページがみれます。
 %p= link_to '利用者一覧をみる', users_path
-%h1 最近投稿されたレコード
+%h1 気になる投稿
+%p あなたがフォローしているユーザーの最近の投稿です。
+%h1 みんなの記録
+%p 最近投稿された記録です。
 - if @records.present?
   - @records.each do |record|
-    %ul
-    %li #{record.date}
-    %li #{record.number} #{record.category.material} #{record.trick.name}
-    %li #{record.catch} キャッチ
-    - if record.text.present?
-      %li #{record.text}
-    %li #{record.user.name} さん
-%h1 投稿された記事
+    = link_to record_path(record) do
+      %ul
+      %li #{record.date}
+      %li #{record.number} #{record.category.material} #{record.trick.name}
+      %li #{record.catch} キャッチ
+      - if record.text.present?
+        %li #{record.text}
+      %li #{record.user.name} さん
+  %p= link_to 'もっと見る', records_records_path
+%h1 みんなの投稿
+%p 最近投稿された記事です。
 %ul
   - if @articles.present?
     - @articles.each do |article|
       %li= link_to article.title, article_path(article)
-%h1 最近のコメント
-%ul
-  - if @comments.present?
-    - @comments.each do |comment|
-      = link_to comment.user.name, user_path(comment.user)
-      %p= comment.text
-%p= link_to 'もっと見る', comments_path
+%p= link_to 'もっと見る', articles_path
