@@ -10,8 +10,8 @@
   %body
     %header.navbar.navbar-fixed-top.navbar-inverse
       .container
-        =link_to "ジャグリングマスター", root_path, id:"logo"
-        %p 練習の成果を共有、日記も書ける交流サイト。
+        =link_to "ジャグリングマスター(アルファ版)", root_path, id:"logo"
+        %p 練習の成果を共有、日記も書ける交流サイト。※開発中です。
         %ul.nav.navbar-nav.navbar-right
           - if user_signed_in?
             %li= link_to '記録をする', new_record_path
