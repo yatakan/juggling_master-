@@ -4,10 +4,16 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   validates :name, :material, presence: true
-  has_many :records
-  has_many :comments
-  has_many :articles
-  has_many :article_comments
+
+  has_many :comments, dependent: :destroy
+  has_many :article_comments, dependent: :destroy
+
+  has_many :records, dependent: :destroy
+  has_many :articles, dependent: :destroy
+  has_many :articles_likes, dependent: :destroy
+  has_many :records_likes, dependent: :destroy
+  has_many :like_articles, through: :articles_likes, source: :articles
+  has_many :like_records, through: :records_likes, source: :records
 
   has_many :active_relationships,  class_name:  "Relationship",
                                    foreign_key: "follower_id",

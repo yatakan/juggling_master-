@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   root 'records#index'
   get '/comments' => 'comments#index'
 
+  post '/article_like/:article_id' => 'articles_likes#like', as: 'article_like'
+  delete '/article_like/:article_id' => 'articles_likes#unlike', as: 'article_unlike'
+
   resources :tricks do
     collection do
       get 'records'
