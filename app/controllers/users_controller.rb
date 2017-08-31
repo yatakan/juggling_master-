@@ -11,21 +11,19 @@ class UsersController < ApplicationController
       @catches += record.catch
     end
     @articles = @user.articles
-    @follows = current_user.active_follow.follower
-    binding.pry
   end
 
   def following
-    @title = "Following"
+    @title = "フォローしている人"
     @user  = User.find(params[:id])
-    @users = @user.following.paginate(page: params[:page])
+    @users = @user.following
     render 'show_follow'
   end
 
   def followers
-    @title = "Followers"
+    @title = "フォローされている人"
     @user  = User.find(params[:id])
-    @users = @user.followers.paginate(page: params[:page])
+    @users = @user.followers
     render 'show_follow'
   end
 end
