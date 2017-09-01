@@ -64,3 +64,5 @@ gem 'gon'
 gem 'rails_12factor', group: :production
 
 gem 'omniauth-facebook'
+gem 'kaminari'
+

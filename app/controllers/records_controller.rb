@@ -34,6 +34,10 @@ class RecordsController < ApplicationController
   def about
   end
 
+  def records
+    @records = Record.all.includes(:user).page(params[:page]).per(10)
+  end
+
   private
   def update_date
     @record.trick_id = params[:trick_id]

@@ -1,1 +1,22 @@
 %h1 記録一覧
+- if @records.present?
+  %table.user-records.table
+    %tr
+      %th Day
+      %th Trick
+      %th Record
+      %th User
+      %th Comment
+    - @records.each do |record|
+      = link_to record_path(record) do
+        %tr
+          %td #{record.date}
+          %td
+            #{record.number} #{record.category.material} #{record.trick.name}
+          %td #{record.catch} キャッチ
+          %td
+            - if record.text.present?
+              #{record.text}
+          %td
+            #{record.user.name} さん
+  =paginate @records

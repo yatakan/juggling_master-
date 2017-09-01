@@ -11,15 +11,25 @@
 %h1 みんなの記録
 %p 最近投稿された記録です。
 - if @records.present?
-  - @records.each do |record|
-    = link_to record_path(record) do
-      %ul
-      %li #{record.date}
-      %li #{record.number} #{record.category.material} #{record.trick.name}
-      %li #{record.catch} キャッチ
-      - if record.text.present?
-        %li #{record.text}
-      %li #{record.user.name} さん
+  %table.user-records.table
+    %tr
+      %th Day
+      %th Trick
+      %th Record
+      %th User
+      %th Comment
+    - @records.each do |record|
+      = link_to record_path(record) do
+        %tr
+          %td #{record.date}
+          %td
+            #{record.number} #{record.category.material} #{record.trick.name}
+          %td #{record.catch} キャッチ
+          %td
+            - if record.text.present?
+              #{record.text}
+          %td
+            #{record.user.name} さん
   %p= link_to 'もっと見る', records_records_path
 %h1 みんなの投稿
 %p 最近投稿された記事です。
