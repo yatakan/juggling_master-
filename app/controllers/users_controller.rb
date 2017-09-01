@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all.limit(15)
+    @users = User.all.page(params[:page]).per(10)
   end
 
   def show
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
     end
     if result
         sign_in @user
-        flash[:success] = "#{fb}ログインしました。" 
+        flash[:success] = "#{fb}ログインしました。"
         redirect_to @user
     else
         if fb.present?

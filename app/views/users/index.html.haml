@@ -1,5 +1,19 @@
-%h1 最近更新した人
-%ul
-  - if @users.present?
+%h1 利用者一覧
+%p 気になる人がいたらフォローしてみましょう１
+- if @users.present?
+  %table.user-users.table
+    %tr
+      %th Day
+      %th Name
+      %th Material
+      %th Article
+      %th Record
     - @users.each do |user|
-      %li= link_to user.name, user_path(user)
+      = link_to user_path(user) do
+        %tr
+          %td #{user.created_at}
+          %td #{user.name} さん
+          %td #{user.material}
+          %td #{user.articles.length} 本
+          %td #{user.records.length} 個
+  =paginate @users
