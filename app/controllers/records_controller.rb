@@ -1,5 +1,5 @@
 class RecordsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :about
   def index
     ## ルートページです
     @comments = Comment.order('created_at DESC').limit(5)

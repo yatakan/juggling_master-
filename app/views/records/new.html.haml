@@ -1,12 +1,21 @@
 %h1 新しいレコードを登録する
 = form_tag "/records", method: :post do
-  = select_tag :number, options_for_select(@numbers.map do |num| num end)
+  = select_tag :number, options_for_select(@numbers, {selected: 3})
   = select_tag :category_id, options_for_select(Category.all.map do |cate| [cate.material, cate.id] end)
   = select_tag :trick_id, options_for_select(@tricks.map do |tri| [tri.name, tri.id] end)
-  = text_field_tag :catch, "", placeholder:"キャッチ数"
   %br
-  = text_area_tag :text, "", placeholder:"一言どうぞ !!"
-  = submit_tag "登録する"
+  %br
+  = label :catch, "キャッチ数を入力してください"
+  %br
+  = text_field_tag :catch, "", placeholder:"キャッチ数", size:"35"
+  %br
+  %br
+  = label :text, "何か一言どうぞ(空欄可)"
+  %br
+  = text_area_tag :text, "", placeholder:"一言どうぞ !!", size:"50x5"
+  %br
+  %br
+  = submit_tag "登録する", class: "btn btn-info btn-lg"
 - if flash[:notice]
   %p= flash[:notice]
 %h1 説明
@@ -18,3 +27,5 @@
   %li もう1度登録した場合は、上書きされます。
   %li 楽しくご利用ください！
   %li 100,000キャッチ以上は管理者の承認が必要です。
+  %li 単位はキャッチ数を採用しています。
+  %li 時間で測っていた時は、大体のキャッチ数を入力し、一言に時間を入れてください。
