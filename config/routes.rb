@@ -4,8 +4,13 @@ Rails.application.routes.draw do
   root 'records#index'
   get '/comments' => 'comments#index'
 
+  ##いいね
   post '/article_like/:article_id' => 'articles_likes#like', as: 'article_like'
   delete '/article_like/:article_id' => 'articles_likes#unlike', as: 'article_unlike'
+  get '/auth/failure',               to: 'users#auth_failure', as: :auth_failure
+
+  ##Facebook
+  get '/auth/:provider/callback',    to: 'users#create',       as: :auth_callback
 
   resources :tricks do
     collection do
