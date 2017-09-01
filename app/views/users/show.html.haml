@@ -26,17 +26,42 @@
 
 - if user_signed_in?
   %h1 最近の達成
-  - @records.each do |record|
-    = link_to record_path(record) do
-      %div
-        %ul
-          %li #{record.date}
-          %li #{record.number} #{record.category.material} #{record.trick.name}
-          %li #{record.catch} キャッチ
-          - if record.text.present?
-            %li コメント： #{record.text}
-
-  %h1 書いた記事
-  %ul
+  - if @records.present?
+    %table.user-records.table
+      %tr
+        %th Day
+        %th Trick
+        %th Record
+        %th Comment
+        %th View
+      - @records.each do |record|
+        = link_to record_path(record) do
+          %tr
+            %td #{record.date}
+            %td
+              #{record.number} #{record.category.material} #{record.trick.name}
+            %td #{record.catch} キャッチ
+            %td
+              - if record.text.present?
+                #{record.text}
+            %td
+              = link_to record_path(record) do
+                = fa_icon "external-link-square"
+%h1 書いた記事
+- if @articles.present?
+  %table.table
+    %tr
+      %th Day
+      %th Title
+      %th Text
+      %th User
+      %th View
     - @articles.each do |article|
-      %li= link_to article.title, article_path(article)
+      %tr
+        %td= article.created_at.strftime("%Y-%m-%d")
+        %td= article.title
+        %td= article.text
+        %td= link_to "#{article.user.name} さん", user_path(article.user)
+        %td
+          = link_to article_path(article) do
+            = fa_icon "external-link-square"

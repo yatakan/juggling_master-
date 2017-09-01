@@ -9,9 +9,24 @@
       .btn.btn-default.glyphicon.glyphicon-heart-empty{id: "heart-#{@article.id}"}
         = @article.articles_likes.count.to_s
 #article-text= simple_format(@article.text)
-= link_to "この記事にコメントする", new_article_article_comment_path(@article)
-%ul
-  - if @article_comments
-    - @article_comments.each do |comment|
-      %li= comment.user.name
-      %li= simple_format(comment.text)
+
+%br
+%h2 この投稿へのコメント
+-if @article_comments.present?
+  %table.table
+    %tr
+      %th Day
+      %th Name
+      %th Comment
+    - @article_comments.each do |article_comment|
+      %tr
+        %td= article_comment.created_at.strftime("%Y-%m-%d")
+        %td
+          = link_to "#{article_comment.user.name} さん", user_path(article_comment.user)
+        %td #{article_comment.text}
+  %br
+- else
+  %p まだコメントはありません
+%br
+%br
+= link_to "この記事にコメントする", new_article_article_comment_path(@article), class:"btn btn-info btn-lg"

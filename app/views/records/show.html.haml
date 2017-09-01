@@ -1,13 +1,34 @@
-%h1 レコードの詳細ページ
-%div
-  %ul
-    %li #{@record.date}
-    %li #{@record.number} #{@record.category.material} #{@record.trick.name}
-    %li #{@record.catch} キャッチ
-    - if @record.text.present?
-      %li #{@record.text}
-%h1 この投稿へのコメント
-= link_to "コメントを書く", new_record_comment_path(@record)
-- @comments.each do |comment|
-  %h3 投稿者：#{comment.user.name}
-  %p #{comment.text}
+%h1 この記録の詳細
+- if @record.present?
+  %table.user-records.table
+    %tr
+      %th Day
+      %th Trick
+      %th Record
+      %th Comment
+      %th User
+    %tr
+      %td #{@record.date}
+      %td
+        #{@record.number} #{@record.category.material} #{@record.trick.name}
+      %td #{@record.catch} キャッチ
+      %td
+        - if @record.text.present?
+          #{@record.text}
+      %td
+        = link_to "#{@record.user.name} さん", user_path(@record.user)
+%br
+%h2 この投稿へのコメント
+%table.table
+  %tr
+    %th Day
+    %th Name
+    %th Comment
+  - @comments.each do |comment|
+    %tr
+      %td= comment.created_at.strftime("%Y-%m-%d")
+      %td
+        = link_to "#{comment.user.name} さん", user_path(comment.user)
+      %td #{comment.text}
+%br
+= link_to "コメントを書く", new_record_comment_path(@record), class:"btn btn-info btn-lg"

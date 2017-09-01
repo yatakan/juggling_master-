@@ -9,7 +9,8 @@ class TricksController < ApplicationController
     @trick = Trick.find(params[:trick_id])
     @category = Category.find(params[:category_id])
     @number = params[:number]
-    @records = @trick.records.where(user_id: current_user.id).where(number: @number).where(category_id: @category)
+    @records = @trick.records.where(user_id: current_user.id).where(number: @number).where(category_id: @category).limit(30)
+    ####ここがうまく動くか試していない###
 
     @trick_name = "#{@number}#{@category.material}#{@trick.name}"
     gon.trick = "#{@number}#{@category.material}#{@trick.name}"

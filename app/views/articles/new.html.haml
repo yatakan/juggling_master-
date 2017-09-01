@@ -16,7 +16,6 @@
     %ul
       - @article.errors.full_messages.each do |msg|
         %li= msg
-
 .input-group
   = form_for @article do |f|
     = f.label :title, "タイトル"
