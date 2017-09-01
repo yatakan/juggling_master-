@@ -33,8 +33,17 @@
   %p= link_to 'もっと見る', records_records_path
 %h1 みんなの投稿
 %p 最近投稿された記事です。
-%ul
-  - if @articles.present?
+- if @articles.present?
+  %table.table
+    %tr
+      %th Day
+      %th Title
+      %th Text
+      %th User
     - @articles.each do |article|
-      %li= link_to article.title, article_path(article)
+      %tr
+        %td= article.created_at
+        %td= article.title
+        %td= article.text
+        %td= article.user.name
 %p= link_to 'もっと見る', articles_path

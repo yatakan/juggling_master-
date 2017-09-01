@@ -1,2 +1,15 @@
-%h1 Articles#index
-%p Find me in app/views/articles/index.html.haml
+- if @articles.present?
+  %h1 最近書かれた記事一覧
+  %table.table
+    %tr
+      %th Day
+      %th Title
+      %th Text
+      %th User
+    - @articles.each do |article|
+      %tr
+        %td= article.created_at
+        %td= article.title
+        %td= article.text
+        %td= article.user.name
+  =paginate @articles
