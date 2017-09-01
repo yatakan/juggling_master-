@@ -7,7 +7,7 @@
 %p 他の利用者のページがみれます。
 %p= link_to '利用者一覧をみる', users_path
 %h1 気になる投稿
-%p あなたがフォローしているユーザーの最近の投稿です。
+%p あなたがフォローしているユーザーの最近の投稿です。（作成中）
 %h1 みんなの記録
 %p 最近投稿された記録です。
 - if @records.present?
@@ -16,8 +16,9 @@
       %th Day
       %th Trick
       %th Record
-      %th User
       %th Comment
+      %th User
+      %th View
     - @records.each do |record|
       = link_to record_path(record) do
         %tr
@@ -29,7 +30,10 @@
             - if record.text.present?
               #{record.text}
           %td
-            #{record.user.name} さん
+            = link_to "#{record.user.name} さん", user_path(record.user)
+          %td
+            = link_to record_path(record) do
+              = fa_icon "external-link-square"
   %p= link_to 'もっと見る', records_records_path
 %h1 みんなの投稿
 %p 最近投稿された記事です。
@@ -40,10 +44,14 @@
       %th Title
       %th Text
       %th User
+      %th View
     - @articles.each do |article|
       %tr
-        %td= article.created_at
+        %td= article.created_at.strftime("%Y-%m-%d")
         %td= article.title
         %td= article.text
-        %td= article.user.name
+        %td= link_to "#{article.user.name} さん", user_path(article.user)
+        %td
+          = link_to article_path(article) do
+            = fa_icon "external-link-square"
 %p= link_to 'もっと見る', articles_path

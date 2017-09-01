@@ -5,8 +5,9 @@
       %th Day
       %th Trick
       %th Record
-      %th User
       %th Comment
+      %th User
+      %th View
     - @records.each do |record|
       = link_to record_path(record) do
         %tr
@@ -18,5 +19,8 @@
             - if record.text.present?
               #{record.text}
           %td
-            #{record.user.name} さん
+            = link_to "#{record.user.name} さん", user_path(record.user)
+          %td
+            = link_to record_path(record) do
+              = fa_icon "external-link-square"
   =paginate @records
