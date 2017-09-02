@@ -1,9 +1,4 @@
 class TricksController < ApplicationController
-  def index
-    @tricks = Trick.all
-    @numbers = (1..13).to_a
-  end
-
   def show
     ### 技名をクリックしたら飛ぶページ
     @trick = Trick.find(params[:id])

@@ -10,4 +10,5 @@
 
 = form_for [@article, @article_comment] do |f|
   = f.text_area :text, placeholder: "コメントを書いてください(3000文字以内)", autofocus: true
-  = f.submit "コメントを投稿する"
+  %br
+  = f.submit "コメントを投稿する", class:"btn btn-lg btn-info"
