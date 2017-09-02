@@ -9,6 +9,7 @@ class RecordsController < ApplicationController
 
   def show
     @record = Record.find(params[:id])
+    @records = [@record]
     @comments = @record.comments
   end
 

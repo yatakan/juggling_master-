@@ -1,22 +1,5 @@
 %h1 この記録の詳細
-- if @record.present?
-  %table.user-records.table
-    %tr
-      %th Day
-      %th Trick
-      %th Record
-      %th Comment
-      %th User
-    %tr
-      %td #{@record.date}
-      %td
-        #{@record.number} #{@record.category.material} #{@record.trick.name}
-      %td #{@record.catch} キャッチ
-      %td
-        - if @record.text.present?
-          #{@record.text}
-      %td
-        = link_to "#{@record.user.name} さん", user_path(@record.user)
+= render partial:"tricks/detail", locals: { records: @records }
 %br
 %h2 この投稿へのコメント
 %table.table

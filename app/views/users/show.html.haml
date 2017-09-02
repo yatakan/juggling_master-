@@ -26,27 +26,7 @@
 
 - if user_signed_in?
   %h1 最近の達成
-  - if @records.present?
-    %table.user-records.table
-      %tr
-        %th Day
-        %th Trick
-        %th Record
-        %th Comment
-        %th View
-      - @records.each do |record|
-        = link_to record_path(record) do
-          %tr
-            %td #{record.date}
-            %td
-              #{record.number} #{record.category.material} #{record.trick.name}
-            %td #{record.catch} キャッチ
-            %td
-              - if record.text.present?
-                #{record.text}
-            %td
-              = link_to record_path(record) do
-                = fa_icon "external-link-square"
+  = render partial:"tricks/detail", locals: { records: @records }
 %h1 書いた記事
 - if @articles.present?
   %table.table

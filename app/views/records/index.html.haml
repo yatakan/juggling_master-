@@ -10,31 +10,8 @@
 %p あなたがフォローしているユーザーの最近の投稿です。（作成中）
 %h1 みんなの記録
 %p 最近投稿された記録です。
-- if @records.present?
-  %table.user-records.table
-    %tr
-      %th Day
-      %th Trick
-      %th Record
-      %th Comment
-      %th User
-      %th View
-    - @records.each do |record|
-      = link_to record_path(record) do
-        %tr
-          %td #{record.date}
-          %td
-            #{record.number} #{record.category.material} #{record.trick.name}
-          %td #{record.catch} キャッチ
-          %td
-            - if record.text.present?
-              #{record.text}
-          %td
-            = link_to "#{record.user.name} さん", user_path(record.user)
-          %td
-            = link_to record_path(record) do
-              = fa_icon "external-link-square"
-  %p= link_to 'もっと見る', records_records_path
+= render partial:"tricks/detail", locals: { records: @records }
+%p= link_to 'もっと見る', records_records_path
 %h1 みんなの投稿
 %p 最近投稿された記事です。
 - if @articles.present?

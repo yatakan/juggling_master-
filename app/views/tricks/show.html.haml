@@ -1,0 +1,4 @@
+- if @name.present?
+  = @name
+
+= render partial:"detail", locals: { records: @records }

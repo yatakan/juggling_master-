@@ -5,6 +5,15 @@ class TricksController < ApplicationController
     @numbers = (1..13).to_a
   end
 
+  def show
+    ### 技名をクリックしたら飛ぶページ
+    @trick = Trick.find(params[:id])
+    @category = Category.find(params[:category_id])
+    @number = params[:number]
+    @name = "#{@number} #{@material} #{@trick.name}"
+    @records = @trick.records.where(category_id: @category.id).where(number: @number).order("catch DESC")
+  end
+
   def records
     @trick = Trick.find(params[:trick_id])
     @category = Category.find(params[:category_id])
