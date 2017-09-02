@@ -1,4 +1,6 @@
+//中央にあるモデルはindexだと思うからrecords#index
 //TOPページです//
+
 %h1 メニュー
 %p データの登録と閲覧ができます。
 %p= link_to '登録する', new_record_path
@@ -6,12 +8,10 @@
 %h1 みんなのマイページ
 %p 他の利用者のページがみれます。
 %p= link_to '利用者一覧をみる', users_path
-%h1 気になる投稿
-%p あなたがフォローしているユーザーの最近の投稿です。（作成中）
 %h1 みんなの記録
 %p 最近投稿された記録です。
 = render partial:"tricks/detail", locals: { records: @records }
-%p= link_to 'もっと見る', records_records_path
+%p= link_to 'もっと見る', search_records_path(all: "show")
 %h1 みんなの投稿
 %p 最近投稿された記事です。
 - if @articles.present?
@@ -25,7 +25,7 @@
     - @articles.each do |article|
       %tr
         %td= article.created_at.strftime("%Y-%m-%d")
-        %td= article.title
+        %td= link_to article.title, article_path(article)
         %td= article.text
         %td= link_to "#{article.user.name} さん", user_path(article.user)
         %td

@@ -1,5 +1,5 @@
 class RecordsController < ApplicationController
-  before_action :authenticate_user!, except: :about
+  before_action :authenticate_user!, only: [:new, :create]
   def index
     ## ルートページです
     @comments = Comment.order('created_at DESC').limit(5)
@@ -35,8 +35,43 @@ class RecordsController < ApplicationController
   def about
   end
 
-  def records
-    @records = Record.all.includes(:user).page(params[:page]).per(10)
+  def search
+    if params[:all] == "show"
+      @records = Record.all.includes(:user).page(params[:page]).per(10)
+      @number = 3
+      set_records_variables
+    else
+      ### 技名をクリックしたら飛ぶページ
+      @trick = Trick.find(params[:trick_id])
+      @category = Category.find(params[:category_id])
+      @number = params[:number]
+      @name = "#{@number} #{@category.material} #{@trick.name}"
+      @records = @trick.records.where(category_id: @category.id).where(number: @number).order("catch DESC").includes(:user).page(params[:page]).per(10)
+      set_records_variables
+    end
+  end
+
+  def graph
+    @trick = Trick.find(params[:trick_id])
+    @category = Category.find(params[:category_id])
+    @number = params[:number]
+    @user = User.find(params[:user_id])
+    @records = @trick.records.where(user_id: @user.id).where(number: @number).where(category_id: @category).limit(30)
+    ####ここがうまく動くか試していない###
+
+    @trick_name = "#{@number}#{@category.material}#{@trick.name}"
+    gon.trick = "#{@number}#{@category.material}#{@trick.name}"
+    gon.nickname = @user.name
+
+    gon.records = []
+    gon.date = []
+
+    @records.each do |record|
+      gon.records << record[:catch]
+      gon.date << record[:date]
+    end
+
+    redirect_to tricks_path, notice: "該当するデータがありませんでした" unless gon.records.present?
   end
 
   private
@@ -49,5 +84,10 @@ class RecordsController < ApplicationController
     @record.text = params[:text]
     @record.date = Date.today
     @record.save
+  end
+
+  def set_records_variables
+    @tricks = Trick.all
+    @numbers = (1..13).to_a
   end
 end

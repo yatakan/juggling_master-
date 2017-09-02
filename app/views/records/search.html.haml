@@ -1,0 +1,17 @@
+%h1 記録をみる
+%p 全てのデータから絞り込み
+= form_tag search_records_path, method: :get do
+  = select_tag :number, options_for_select(@numbers, selected: @number)
+  = select_tag :category_id, options_for_select(Category.all.map do |cate| [cate.material, cate.id] end)
+  = select_tag :trick_id, options_for_select(@tricks.map do |tri| [tri.name, tri.id] end)
+  %br
+  %br
+  = submit_tag "検索する", class: "btn btn-info btn-lg"
+%br
+%hr
+%br
+- if @name.present?
+  = @name
+
+= render partial:"tricks/detail", locals: { records: @records }
+= paginate(@records)

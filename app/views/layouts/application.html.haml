@@ -15,7 +15,7 @@
         %ul.nav.navbar-nav.navbar-right
           - if user_signed_in?
             %li= link_to '記録をする', new_record_path
-            %li= link_to '記録をみる', tricks_path
+            %li= link_to '記録をみる', search_records_path(all: "show")
             %li= link_to '日記を書く', new_article_path
             %li= link_to 'マイページ', user_path(current_user)
             %li= link_to 'このサイトについて', about_records_path

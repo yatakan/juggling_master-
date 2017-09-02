@@ -1,3 +1,5 @@
+//登録
+
 %h1 新しいレコードを登録する
 = form_tag "/records", method: :post do
   = select_tag :number, options_for_select(@numbers, {selected: 3})

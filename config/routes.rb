@@ -13,15 +13,13 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback',    to: 'users#create',       as: :auth_callback
 
   resources :tricks do
-    collection do
-      get 'records'
-    end
   end
   resources :records do
     resources :comments, only: [:new,:create]
     collection do
       get 'about'
-      get 'records'
+      get 'search'
+      get 'graph'
     end
   end
   resources :users, only: [:index, :show] do

@@ -12,7 +12,7 @@
         %tr
           %td #{record.date}
           %td
-            = link_to trick_path(id: record.trick, number: record.number, category_id: record.category) do
+            = link_to search_records_path(trick_id: record.trick, number: record.number, category_id: record.category) do
               #{record.number} #{record.category.material} #{record.trick.name}
           %td #{record.catch} キャッチ
           %td
@@ -23,3 +23,5 @@
           %td
             = link_to record_path(record) do
               = fa_icon "external-link-square"
+- else
+  %p 該当するデータはありませんでした。

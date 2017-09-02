@@ -1,5 +1,6 @@
 %h1 この記録の詳細
 = render partial:"tricks/detail", locals: { records: @records }
+= link_to 'グラフで見る', graph_records_path(number: @record.number, category_id: @record.category_id, trick_id: @record.trick_id, user_id: @record.user.id)
 %br
 %h2 この投稿へのコメント
 %table.table
