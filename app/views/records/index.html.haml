@@ -4,7 +4,7 @@
 %h1 メニュー
 %p データの登録と閲覧ができます。
 %p= link_to '登録する', new_record_path
-%p= link_to '練習記録をみる', tricks_path
+%p= link_to '記録をみる', search_records_path(all: "show")
 %h1 みんなのマイページ
 %p 他の利用者のページがみれます。
 %p= link_to '利用者一覧をみる', users_path
