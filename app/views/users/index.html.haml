@@ -12,7 +12,7 @@
       = link_to user_path(user) do
         %tr
           %td #{user.created_at}
-          %td= link_to "{user.name}さん", user_path(user)
+          %td= link_to "#{user.name}さん", user_path(user)
           %td #{user.material}
           %td #{user.articles.length} 本
           %td #{user.records.length} 個
