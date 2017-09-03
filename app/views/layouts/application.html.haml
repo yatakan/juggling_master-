@@ -31,17 +31,22 @@
                 =fa_icon "user-circle"
                 %span マイページ
             %li
-              = link_to about_records_path do
-                =fa_icon 'question-circle'
-                %span このサイトについて
-            %li
               = link_to destroy_user_session_path, method: :delete do
                 =fa_icon "bed"
                 %span ログアウト
           - else
-            %li= link_to '新規登録', new_user_registration_path
-            %li= link_to 'ログイン', new_user_session_path
-            %li= link_to 'このサイトについて', about_records_path
+            %li
+              = link_to new_user_registration_path do
+                =fa_icon 'user-o'
+                %span ユーザー登録
+            %li
+              = link_to new_user_session_path do
+                =fa_icon 'user-circle'
+                %span ログインする
+          %li
+            = link_to about_records_path do
+              =fa_icon 'question-circle'
+              %span このサイトについて
     .container
       .padding-top
         = yield
