@@ -1,6 +1,9 @@
 %h1 この記録の詳細
 = render partial:"tricks/detail", locals: { records: @records }
 = link_to 'グラフで見る', graph_records_path(number: @record.number, category_id: @record.category_id, trick_id: @record.trick_id, user_id: @record.user.id)
+- if user_signed_in?
+  - if @record.user == current_user
+    = link_to '削除する', "/records/#{@record.id}", method: :delete, data: { confirm: "削除してよろしいですか？"}
 %br
 %h2 この投稿へのコメント
 %table.table

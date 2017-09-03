@@ -2,7 +2,7 @@ class Record < ApplicationRecord
   belongs_to :trick
   belongs_to :user
   belongs_to :category
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   validates :catch, presence: true, length: { maximum: 100000 }
 end

@@ -8,7 +8,7 @@ class RecordsController < ApplicationController
   end
 
   def show
-    @record = Record.find(params[:id])
+    set_record
     @records = [@record]
     @comments = @record.comments
   end
@@ -30,6 +30,11 @@ class RecordsController < ApplicationController
       update_date
       redirect_to new_record_path, notice: "保存しました！"
     end
+  end
+
+  def destroy
+    set_record
+    @record.destroy
   end
 
   def about
@@ -75,6 +80,9 @@ class RecordsController < ApplicationController
   end
 
   private
+  def set_record
+    @record = Record.find(params[:id])
+  end
   def update_date
     @record.trick_id = params[:trick_id]
     @record.category_id = params[:category_id]
