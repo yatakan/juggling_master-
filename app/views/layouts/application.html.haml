@@ -14,12 +14,30 @@
         %p 練習の成果を共有、日記も書ける交流サイト。※開発中です。
         %ul.nav.navbar-nav.navbar-right
           - if user_signed_in?
-            %li= link_to '記録をする', new_record_path
-            %li= link_to '記録をみる', search_records_path(all: "show")
-            %li= link_to '日記を書く', new_article_path
-            %li= link_to 'マイページ', user_path(current_user)
-            %li= link_to 'このサイトについて', about_records_path
-            %li= link_to 'ログアウト', destroy_user_session_path, method: :delete
+            %li
+              = link_to new_record_path do
+                =fa_icon 'floppy-o'
+                %span 記録をする
+            %li
+              = link_to search_records_path(all: "show") do
+                =fa_icon 'list'
+                %span 記録をみる
+            %li
+              = link_to new_article_path do
+                = fa_icon "pencil-square-o"
+                %span 日記を書く
+            %li
+              = link_to user_path(current_user) do
+                =fa_icon "user-circle"
+                %span マイページ
+            %li
+              = link_to about_records_path do
+                =fa_icon 'question-circle'
+                %span このサイトについて
+            %li
+              = link_to destroy_user_session_path, method: :delete do
+                =fa_icon "bed"
+                %span ログアウト
           - else
             %li= link_to '新規登録', new_user_registration_path
             %li= link_to 'ログイン', new_user_session_path
@@ -30,4 +48,6 @@
     %footer.footer
       %p= link_to 'トップへ戻る', root_path
       %br
-      %p= link_to "制作：Juggler Saru", "https://www.youtube.com/channel/UC58ySpPSJj601F5uAwpSu8A"
+      = link_to "https://www.youtube.com/channel/UC58ySpPSJj601F5uAwpSu8A" do
+        %span Juggler Saru
+        =fa_icon "youtube"

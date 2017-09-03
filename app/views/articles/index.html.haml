@@ -1,18 +1,2 @@
-- if @articles.present?
-  %table.table
-    %tr
-      %th Day
-      %th Title
-      %th Text
-      %th User
-      %th View
-    - @articles.each do |article|
-      %tr
-        %td= article.created_at.strftime("%Y-%m-%d")
-        %td= article.title
-        %td= article.text
-        %td= link_to "#{article.user.name} さん", user_path(article.user)
-        %td
-          = link_to article_path(article) do
-            = fa_icon "external-link-square"
-  =paginate @articles
+= render partial:"article-list", locals: { articles: @articles}
+=paginate @articles

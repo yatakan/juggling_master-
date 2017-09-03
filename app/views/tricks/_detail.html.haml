@@ -3,11 +3,11 @@
     %tr
       %th Day
       %th Trick
+      %th Detail
       %th Graph
       %th Record
       %th Comment
       %th User
-      %th Detail
     - records.each do |record|
       = link_to record_path(record) do
         %tr
@@ -15,6 +15,9 @@
           %td
             = link_to search_records_path(trick_id: record.trick, number: record.number, category_id: record.category) do
               #{record.number} #{record.category.material} #{record.trick.name}
+          %td
+            = link_to record_path(record) do
+              = fa_icon "external-link-square"
           %td
             = link_to graph_records_path(number: record.number, category_id: record.category_id, trick_id: record.trick_id, user_id: record.user.id) do
               = fa_icon "bar-chart"
@@ -25,8 +28,5 @@
               #{record.text}
           %td
             = link_to "#{record.user.name} さん", user_path(record.user)
-          %td
-            = link_to record_path(record) do
-              = fa_icon "external-link-square"
 - else
   %p 該当するデータはありませんでした。

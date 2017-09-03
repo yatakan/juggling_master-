@@ -14,21 +14,5 @@
 %p= link_to 'もっと見る', search_records_path(all: "show")
 %h1 みんなの投稿
 %p 最近投稿された記事です。
-- if @articles.present?
-  %table.table
-    %tr
-      %th Day
-      %th Title
-      %th Text
-      %th User
-      %th View
-    - @articles.each do |article|
-      %tr
-        %td= article.created_at.strftime("%Y-%m-%d")
-        %td= link_to article.title, article_path(article)
-        %td= article.text
-        %td= link_to "#{article.user.name} さん", user_path(article.user)
-        %td
-          = link_to article_path(article) do
-            = fa_icon "external-link-square"
+= render partial:"articles/article-list", locals: { articles: @articles}
 %p= link_to 'もっと見る', articles_path
