@@ -1,18 +1,35 @@
 //中央にあるモデルはindexだと思うからrecords#index
 //TOPページです//
 
-%h1 メニュー
-%p データの登録と閲覧ができます。
-%p= link_to '登録する', new_record_path
-%p= link_to '記録をみる', search_records_path(all: "show")
+%h1 練習成果を記録する！
+- if user_signed_in?
+  %p
+    = link_to new_record_path do
+      = fa_icon 'floppy-o'
+      %span 練習成果を記録をする
+  %p
+    = link_to search_records_path(all: "show") do
+      = fa_icon 'list'
+      %span 練習成果をみる
+- else
+  %p ログインすると毎日の練習成果を記録できます！
 %h1 みんなのマイページ
 %p 他の利用者のページがみれます。
-%p= link_to '利用者一覧をみる', users_path
+%p
+  = link_to users_path do
+    = fa_icon 'list'
+    %span 利用者一覧を見る
 %h1 みんなの記録
 %p 最近投稿された記録です。
 = render partial:"tricks/detail", locals: { records: @records }
-%p= link_to 'もっと見る', search_records_path(all: "show")
+%p
+  = link_to search_records_path(all: "show") do
+    %span もっと見る
+    = fa_icon "external-link-square"
 %h1 みんなの投稿
 %p 最近投稿された記事です。
 = render partial:"articles/article-list", locals: { articles: @articles}
-%p= link_to 'もっと見る', articles_path
+%p
+  = link_to articles_path do
+    %span もっと見る
+    = fa_icon "external-link-square"
