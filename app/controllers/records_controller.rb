@@ -19,7 +19,6 @@ class RecordsController < ApplicationController
   end
 
   def create
-    binding.pry
     @trick = Trick.find(params[:trick_id])
     @category = Category.find(params[:category_id])
     @number = params[:number]

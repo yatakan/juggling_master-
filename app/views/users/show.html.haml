@@ -23,10 +23,8 @@
 %p #{@user.text}
 %h2 合計キャッチ数
 %p #{@catches}
-
-- if user_signed_in?
-  %h1 最近の達成
-  = render partial:"tricks/detail", locals: { records: @records }
+%h1 最近の達成
+= render partial:"tricks/detail", locals: { records: @records }
 %h1 書いた記事
 - if @articles.present?
   %table.table
