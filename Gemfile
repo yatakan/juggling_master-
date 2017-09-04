@@ -65,4 +65,4 @@ gem 'rails_12factor', group: :production
 
 gem 'omniauth-facebook'
 gem 'kaminari'
-gem 'font-awesome-rails'b
+gem 'font-awesome-rails'

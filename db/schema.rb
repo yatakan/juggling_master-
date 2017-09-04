@@ -10,14 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170831030514) do
+ActiveRecord::Schema.define(version: 20170904111752) do
 
   create_table "article_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.text     "text",       limit: 65535
+    t.text     "text",        limit: 65535
     t.integer  "user_id"
     t.integer  "article_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.integer  "notice_type",               default: 1
     t.index ["article_id"], name: "index_article_comments_on_article_id", using: :btree
     t.index ["user_id"], name: "index_article_comments_on_user_id", using: :btree
   end
@@ -47,11 +48,12 @@ ActiveRecord::Schema.define(version: 20170831030514) do
   end
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.text     "text",       limit: 65535
+    t.text     "text",        limit: 65535
     t.integer  "user_id"
     t.integer  "record_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.integer  "notice_type",               default: 2
     t.index ["record_id"], name: "index_comments_on_record_id", using: :btree
     t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
@@ -123,6 +125,8 @@ ActiveRecord::Schema.define(version: 20170831030514) do
     t.string   "material"
     t.text     "text",                   limit: 65535
     t.string   "club"
+    t.string   "provider"
+    t.string   "uid"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

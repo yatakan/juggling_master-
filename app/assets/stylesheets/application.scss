@@ -6,7 +6,41 @@
 
 $gray-medium-light: #eaeaea;
 
-/* レコード装飾 */
+/* お知らせ */
+.message {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 300px;
+  height: 200px;
+  z-index: 1;
+  overflow: scroll;
+  border-radius: 10px;
+  p {
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  li {
+    list-style: none;
+  }
+}
+
+.message2 {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 300px;
+  height: 30px;
+  z-index: 2;
+  font-size: 30px;
+  color: white;
+  opacity: 0.8;
+}
+
+.display-none {
+  display: none;
+}
 
 /* form */
 input {
