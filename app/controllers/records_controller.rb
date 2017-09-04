@@ -15,7 +15,7 @@ class RecordsController < ApplicationController
 
   def new
     @record = Record.new
-    @tricks = Trick.all
+    set_tricks
   end
 
   def create
@@ -26,10 +26,20 @@ class RecordsController < ApplicationController
     @record = @trick.records.where(user_id: current_user.id).where(number: @number).where(category_id: @category).where(date: @date).first_or_initialize
     if @record.id
       update_date
-      redirect_to new_record_path, notice: "同じ技は１日１つしかデータを保存できません。上書きしました"
+      if @record.save
+        redirect_to new_record_path, notice: "同じ技は１日１つしかデータを保存できません。上書きしました"
+      else
+        set_tricks
+        render :new
+      end
     else
       update_date
-      redirect_to new_record_path, notice: "保存しました！"
+      if @record.save
+        redirect_to new_record_path, notice: "保存しました！"
+      else
+        set_tricks
+        render :new
+      end
     end
   end
 
@@ -84,6 +94,11 @@ class RecordsController < ApplicationController
   def set_record
     @record = Record.find(params[:id])
   end
+
+  def set_tricks
+    @tricks = Trick.all
+  end
+
   def update_date
     @record.trick_id = params[:trick_id]
     @record.category_id = params[:category_id]
@@ -92,7 +107,6 @@ class RecordsController < ApplicationController
     @record.number = params[:number]
     @record.text = params[:text]
     @record.date = params[:date]
-    @record.save
   end
 
   def set_records_variables
