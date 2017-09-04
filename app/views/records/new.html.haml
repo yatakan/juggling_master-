@@ -1,8 +1,19 @@
 //登録
 
 %h1 新しいレコードを登録する
+- if @record.errors.any?
+  #error_explanation
+    %h2= "保存できませんでした"
+    %ul
+      - @record.errors.full_messages.each do |msg|
+        %li= msg
 = form_tag "/records", method: :post do
-  = select_tag :number, options_for_select(@numbers, {selected: 3})
+  = label :date, "達成日"
+  %br
+  = date_field_tag :date, Date.today
+  %br
+  %br
+  = select_tag :number, options_for_select(1..13, {selected: 3})
   = select_tag :category_id, options_for_select(Category.all.map do |cate| [cate.material, cate.id] end)
   = select_tag :trick_id, options_for_select(@tricks.map do |tri| [tri.name, tri.id] end)
   %br

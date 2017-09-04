@@ -14,15 +14,17 @@ class RecordsController < ApplicationController
   end
 
   def new
+    @record = Record.new
     @tricks = Trick.all
-    @numbers = (1..13).to_a
   end
 
   def create
+    binding.pry
     @trick = Trick.find(params[:trick_id])
     @category = Category.find(params[:category_id])
     @number = params[:number]
-    @record = @trick.records.where(user_id: current_user.id).where(number: @number).where(category_id: @category).where(date: Date.today).first_or_initialize
+    @date = params[:date]
+    @record = @trick.records.where(user_id: current_user.id).where(number: @number).where(category_id: @category).where(date: @date).first_or_initialize
     if @record.id
       update_date
       redirect_to new_record_path, notice: "同じ技は１日１つしかデータを保存できません。上書きしました"
@@ -90,7 +92,7 @@ class RecordsController < ApplicationController
     @record.catch = params[:catch]
     @record.number = params[:number]
     @record.text = params[:text]
-    @record.date = Date.today
+    @record.date = params[:date]
     @record.save
   end
 
