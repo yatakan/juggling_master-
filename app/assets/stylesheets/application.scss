@@ -20,6 +20,18 @@ $gray-medium-light: #eaeaea;
   }
 }
 
+.float-right {
+  float: right;
+}
+
+.float-left {
+  float: left;
+}
+
+.font-bk {
+  color: black;
+}
+
 /* お知らせ */
 .message {
   position: fixed;

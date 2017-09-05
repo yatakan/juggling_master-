@@ -17,15 +17,14 @@
       = link_to users_path do
         = fa_icon 'list'
         %span 利用者一覧を見る
-%h3 最近の記録
-= render partial:"tricks/detail", locals: { records: @records }
-%p
+.under-nav
   = link_to search_records_path(all: "show") do
-    %span もっと見る
-    = fa_icon "external-link-square"
-%h3 最近書かれた記事
-= render partial:"articles/article-list", locals: { articles: @articles}
-%p
+    %h3.float-left
+      %span.font-bk 最近の記録
+      = fa_icon "external-link-square"
+  = render partial:"tricks/detail", locals: { records: @records }
   = link_to articles_path do
-    %span もっと見る
-    = fa_icon "external-link-square"
+    %h3.float-left
+      %span.font-bk 最近書かれた記事
+      = fa_icon "external-link-square"
+  = render partial:"articles/article-list", locals: { articles: @articles}
