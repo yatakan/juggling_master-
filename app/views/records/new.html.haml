@@ -1,6 +1,6 @@
 //登録
 
-%h1 練習成果を記録する！
+%h2 練習成果を記録する！
 - if @record.errors.any?
   #error_explanation
     %h2= "保存できませんでした"
@@ -27,7 +27,7 @@
   = submit_tag "登録する", class:"btn btn-primary"
 - if flash[:notice]
   %p= flash[:notice]
-%h1 説明
+%h2 説明
 %ol
   %li もう1度登録した場合は、上書きされます。
   %li 楽しくご利用ください！

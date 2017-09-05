@@ -103,7 +103,7 @@ class RecordsController < ApplicationController
     @record.trick_id = params[:trick_id]
     @record.category_id = params[:category_id]
     @record.user_id = current_user.id
-    @record.catch = params[:catch]
+    @record.catch = params[:catch].tr('０-９ａ-ｚＡ-Ｚ', '0-9a-zA-Z')
     @record.number = params[:number]
     @record.text = params[:text]
     @record.date = params[:date]

@@ -1,4 +1,4 @@
-%h1 記事にコメントをする
+%h2 記事にコメントをする
 %p 良いねと思ったら気持ちを伝えてみましょう！
 
 - if @article_comment.errors.any?
@@ -9,6 +9,6 @@
         %li= msg
 
 = form_for [@article, @article_comment] do |f|
-  = f.text_area :text, placeholder: "コメントを書いてください(3000文字以内)", autofocus: true
-  %br
-  = f.submit "コメントを投稿する", class:"btn btn-lg btn-info"
+  .form-group
+    = f.text_area :text, placeholder: "コメントを書いてください(3000文字以内)", autofocus: true, class:"form-control"
+  = f.submit "コメントを投稿する", class:"btn btn-primary"

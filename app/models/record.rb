@@ -4,5 +4,6 @@ class Record < ApplicationRecord
   belongs_to :category
   has_many :comments, dependent: :destroy
 
-  validates :catch, presence: true, length: { maximum: 100000 }
+  validates :catch, presence: true, numericality: { only_integer: true, less_than: 100000 }
+  validates :date, presence: true
 end

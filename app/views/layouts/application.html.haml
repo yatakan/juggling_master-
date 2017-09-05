@@ -8,82 +8,84 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    %header.navbar.navbar-fixed-top.navbar-inverse
-      .container
-        =link_to "ジャグリングマスター(アルファ版)", root_path, id:"logo"
-        %p 練習の成果を共有、日記も書ける交流サイト。※開発中です。
-        .white.bars.float-right=fa_icon 'bars'
-        %ul.nav.navbar-nav.navbar-right
-          - if user_signed_in?
-            %li
-              = link_to new_record_path do
-                =fa_icon 'floppy-o'
-                %span 記録をする
-            %li
-              = link_to search_records_path(all: "show") do
-                =fa_icon 'list'
-                %span 記録をみる
-            %li
-              = link_to new_article_path do
-                = fa_icon "pencil-square-o"
-                %span 日記を書く
-            %li
-              = link_to user_path(current_user) do
-                =fa_icon "user-circle"
-                %span マイページ
-            %li
-              = link_to destroy_user_session_path, method: :delete do
-                =fa_icon "bed"
-                %span ログアウト
-          - else
-            %li
-              = link_to new_user_registration_path do
-                =fa_icon 'user-o'
-                %span ユーザー登録
-            %li
-              = link_to new_user_session_path do
-                =fa_icon 'user-circle'
-                %span ログインする
-          %li
-            = link_to about_records_path do
-              =fa_icon 'question-circle'
-              %span このサイトについて
-          %li.close-button.white
-            %a
-              = fa_icon 'window-close-o'
-              %span メニューを閉じる
-    .container
-      .padding-top
-        = yield
-    .message.bg-info
-      %div
-        %span.minus
-          %span
-            = fa_icon "minus-circle"
-          %span.text-info 通知
-        %ul
-          - if user_signed_in?
-            - if @notices.present?
-              - @notices.each do |notice|
-                - if notice.notice_type == 1
-                  = link_to article_path(notice.article) do
-                    %li
-                      %span= notice.created_at.strftime("%Y-%m-%d %H:%M")
-                      %span=  "#{notice.user.name}さんがあなたの記事「#{notice.article.title} 」にコメントしました。"
-                - if notice.notice_type == 2
-                  = link_to record_path(notice.record) do
-                    %li
-                      %span= notice.created_at.strftime("%Y-%m-%d %H:%M")
-                      %span= "#{notice.user.name}さんがあなたの#{notice.record.number} #{notice.record.category.material} #{notice.record.trick.name} #{notice.record.catch}キャッチについてコメントしました。"
+    #wrap
+      %header.navbar.navbar-fixed-top.navbar-inverse
+        .container
+          =link_to "ジャグリングマスター(アルファ版)", root_path, id:"logo"
+          %p 練習の成果を共有、日記も書ける交流サイト。※開発中です。
+          .white.bars.float-right=fa_icon 'bars'
+          %ul.nav.navbar-nav.navbar-right
+            - if user_signed_in?
+              %li
+                = link_to new_record_path do
+                  =fa_icon 'floppy-o'
+                  %span 記録をする
+              %li
+                = link_to search_records_path(all: "show") do
+                  =fa_icon 'list'
+                  %span 記録をみる
+              %li
+                = link_to new_article_path do
+                  = fa_icon "pencil-square-o"
+                  %span 日記を書く
+              %li
+                = link_to user_path(current_user) do
+                  =fa_icon "user-circle"
+                  %span マイページ
+              %li
+                = link_to destroy_user_session_path, method: :delete do
+                  =fa_icon "bed"
+                  %span ログアウト
             - else
-              %p 新しい通知はありません。
-          - else
-            %p 今すぐ新規登録して新しいジャグリング生活を楽しみましょう！
-    .message2.border-bottom.bg-info.display-none
-      %span.minus
-        = fa_icon "plus-circle"
-        %span.text-info 通知
-    %footer.footer
-      .back-to-top
-        = link_to root_path do
-          %p TOPヘ戻る
+              %li
+                = link_to new_user_registration_path do
+                  =fa_icon 'user-o'
+                  %span ユーザー登録
+              %li
+                = link_to new_user_session_path do
+                  =fa_icon 'user-circle'
+                  %span ログインする
+            %li
+              = link_to about_records_path do
+                =fa_icon 'question-circle'
+                %span このサイトについて
+            %li.close-button.white
+              %a
+                = fa_icon 'window-close-o'
+                %span メニューを閉じる
+      .container
+        .padding-top
+          = yield
+      .message.bg-info
+        %div
+          %span.minus
+            %span
+              = fa_icon "minus-circle"
+            %span.text-info 通知
+          %ul
+            - if user_signed_in?
+              - if @notices.present?
+                - @notices.each do |notice|
+                  - if notice.notice_type == 1
+                    = link_to article_path(notice.article) do
+                      %li
+                        %span= notice.created_at.strftime("%Y-%m-%d %H:%M")
+                        %span=  "#{notice.user.name}さんがあなたの記事「#{notice.article.title} 」にコメントしました。"
+                  - if notice.notice_type == 2
+                    = link_to record_path(notice.record) do
+                      %li
+                        %span= notice.created_at.strftime("%Y-%m-%d %H:%M")
+                        %span= "#{notice.user.name}さんがあなたの#{notice.record.number} #{notice.record.category.material} #{notice.record.trick.name} #{notice.record.catch}キャッチについてコメントしました。"
+              - else
+                %p 新しい通知はありません。
+            - else
+              %p 今すぐ新規登録して新しいジャグリング生活を楽しみましょう！
+      .message2.border-bottom.bg-info.display-none
+        %span.minus
+          = fa_icon "plus-circle"
+          %span.text-info 通知
+    %footer#footer
+      .container
+        .back-to-top
+          = link_to root_path do
+            %p TOPヘ戻る

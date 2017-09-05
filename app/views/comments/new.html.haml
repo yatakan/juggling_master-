@@ -1,4 +1,4 @@
-%h1 コメントを書く
+%h3 コメントを書く
 
 - if @comment.errors.any?
   #error_explanation
@@ -8,6 +8,6 @@
         %li= msg
 
 = form_for [@record, @comment] do |f|
-  = f.text_area :text, placeholder:"ここにコメントを入力してください。1000文字まで入力できます。", autofocus: true, size:"50x10"
-  %br
-  = f.submit "コメントを投稿する", class:"btn btn-lg btn-info"
+  .form-group
+    = f.text_area :text, placeholder:"ここにコメントを入力してください。1000文字まで入力できます。", autofocus: true, size:"50x10", class:"form-control"
+  = f.submit "コメントを投稿する", class:"btn btn-primary"
