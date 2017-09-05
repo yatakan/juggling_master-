@@ -1,44 +1,40 @@
 %h2 新規ユーザー登録
 = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
   = devise_error_messages!
-  %h3 説明
-  %ul
-    %li 入力したプロフィールはみんなから見れるようになります !!
-    %li ※メールアドレスは公開されません。
-  .field
-    = f.label :name, "ニックネーム（必須）"
-    %br/
-    = f.text_field :name, placeholder:"あなたのニックネーム又は本名", autofocus: true, size:"50"
-  .field
-    = f.label :material, "主に練習している道具（必須）"
-    %br/
-    = f.text_field :material, size:"50"
-  .field
-    = f.label :club, "所属しているチーム又はサークル"
-    %br/
-    = f.text_field :club, placeholder: "所属している場合、教えてください！", size:"50"
-  .field
-    = f.label :text, "自己紹介"
-    %br/
-    = f.text_area :text, placeholder: "アピールしたいこと", size:"50x20"
-  .field
-    = f.label :email, "メールアドレス（必須）"
-    %br/
-    = f.email_field :email, size:"50"
-  .field
-    = f.label :password, "希望するパスワード（必須）"
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} characters minimum)
-    %br/
-    = f.password_field :password, autocomplete: "off", size:"50"
-  .field
-    = f.label :password_confirmation, "希望するパスワードをもう１度入力してください（必須）"
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "off", size:"50"
+  .form-group
+    .field
+      = f.label :name, "ニックネーム（必須）"
+      = f.text_field :name, placeholder:"あなたのニックネーム又は本名", autofocus: true, size:"50", class:"form-control"
+  .form-group
+    .field
+      = f.label :material, "主に練習している道具（必須）"
+      = f.text_field :material, size:"50", class:"form-control"
+  .form-group
+    .field
+      = f.label :club, "所属しているチーム又はサークル"
+      = f.text_field :club, placeholder: "所属している場合、教えてください！", size:"50", class:"form-control"
+  .form-group
+    .field
+      = f.label :text, "自己紹介"
+    = f.text_area :text, placeholder: "アピールしたいこと", size:"50x20", class:"form-control"
+  .form-group
+    .field
+      = f.label :email, "メールアドレス（必須）"
+      = f.email_field :email, size:"50", class:"form-control"
+  .form-group
+    .field
+      = f.label :password, "希望するパスワード（必須）"
+      - if @minimum_password_length
+        %em
+          (#{@minimum_password_length} characters minimum)
+      = f.password_field :password, autocomplete: "off", size:"50", class:"form-control"
+  .form-group
+    .field
+      = f.label :password_confirmation, "希望するパスワードをもう１度入力してください（必須）"
+      = f.password_field :password_confirmation, autocomplete: "off", size:"50", class:"form-control"
   .actions
     %br/
-    = f.submit "ユーザー登録する", class:"btn btn-info btn-lg"
+    = f.submit "ユーザー登録する", class:"btn btn-primary"
     %br/
     %br/
     %br/

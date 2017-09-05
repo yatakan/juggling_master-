@@ -1,3 +1,4 @@
+%h1 #{@user.name}さんのマイページ
 - if user_signed_in?
   - if current_user == @user
     %ul
@@ -13,8 +14,6 @@
       = form_for current_user.active_relationships.build do |f|
         = hidden_field_tag :followed_id, @user.id
         = f.submit "Follow", class:"btn btn-primary"
-
-%h1 #{@user.name}さんのマイページ
 %h2 よく練習している道具
 %p #{@user.material}
 %h2 所属しているサークル

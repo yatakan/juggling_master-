@@ -18,25 +18,17 @@
   = select_tag :trick_id, options_for_select(@tricks.map do |tri| [tri.name, tri.id] end)
   %br
   %br
-  = label :catch, "キャッチ数を入力してください"
-  %br
-  = text_field_tag :catch, "", placeholder:"キャッチ数", size:"35"
-  %br
-  %br
-  = label :text, "何か一言どうぞ(空欄可)"
-  %br
-  = text_area_tag :text, "", placeholder:"一言どうぞ !!", size:"50x5"
-  %br
-  %br
-  = submit_tag "登録する", class: "btn btn-info btn-lg"
+  .form-group
+    = label :catch, "キャッチ数を入力してください"
+    = text_field_tag :catch, "", placeholder:"キャッチ数", size:"35", class:"form-control"
+  .form-group
+    = label :text, "何か一言どうぞ(空欄可)"
+    = text_area_tag :text, "", placeholder:"一言どうぞ !!", size:"50x5", class:"form-control"
+  = submit_tag "登録する", class:"btn btn-primary"
 - if flash[:notice]
   %p= flash[:notice]
 %h1 説明
 %ol
-  %li あなたの記録が保存できるパーソナルデータベースです。
-  %li データは全て公開されます。
-  %li 今日の日付が登録されます。
-  %li 同じ技は1日1回しか登録できません。
   %li もう1度登録した場合は、上書きされます。
   %li 楽しくご利用ください！
   %li 100,000キャッチ以上は管理者の承認が必要です。

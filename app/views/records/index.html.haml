@@ -1,7 +1,8 @@
 //中央にあるモデルはindexだと思うからrecords#index
 //TOPページです//
 
-= image_tag 'gazo4.jpg', class:"top-image"
+= link_to new_record_path do
+  = image_tag 'gazo4.jpg', class:"top-image"
 .top-nav
   = link_to new_record_path do
     = fa_icon 'floppy-o'
