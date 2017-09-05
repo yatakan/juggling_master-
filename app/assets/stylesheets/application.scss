@@ -6,6 +6,20 @@
 
 $gray-medium-light: #eaeaea;
 
+/* TOPページ */
+
+.top-image {
+  width: 100%;
+}
+
+.top-nav {
+  .after-second {
+    i {
+      padding-left: 10px;
+    }
+  }
+}
+
 /* お知らせ */
 .message {
   position: fixed;
@@ -16,6 +30,7 @@ $gray-medium-light: #eaeaea;
   z-index: 1;
   overflow: scroll;
   border-radius: 10px;
+  opacity: 0.9;
   p {
     text-align: center;
     font-size: 15px;
@@ -78,7 +93,7 @@ padding-top: 10px;
 /* universal */
 
 .padding-top {
-  padding-top: 100px;
+  padding-top: 20px;
 }
 
 body {
