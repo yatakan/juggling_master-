@@ -32,6 +32,15 @@ $gray-medium-light: #eaeaea;
   color: black;
 }
 
+.footer {
+  width: 100%;
+  text-align: center;
+  &:hover {
+    p {
+      opacity: 0.5
+    }
+  }
+}
 /* お知らせ */
 .message {
   position: fixed;
