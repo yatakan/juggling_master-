@@ -7,11 +7,17 @@
 $gray-medium-light: #eaeaea;
 
 /* TOPページ */
+
+.font-size18 {
+  font-size: 15px;
+}
+
 .top-image {
   width: 100%;
 }
 
 .top-nav {
+  font-size: 16px;
   .after-second {
     i {
       padding-left: 10px;

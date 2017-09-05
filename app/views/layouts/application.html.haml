@@ -14,7 +14,7 @@
           =link_to "ジャグリングマスター(アルファ版)", root_path, id:"logo"
           %p 練習の成果を共有、日記も書ける交流サイト。※開発中です。
           .white.bars.float-right=fa_icon 'bars'
-          %ul.nav.navbar-nav.navbar-right
+          %ul.nav.navbar-nav.navbar-right.font-size18
             - if user_signed_in?
               %li
                 = link_to new_record_path do

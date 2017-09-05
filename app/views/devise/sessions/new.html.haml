@@ -1,13 +1,13 @@
 %h2 お持ちのアカウントでログインする
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email, "メールアドレス"
-    %br/
-    = f.email_field :email, autofocus: true
-  .field
-    = f.label :password, "パスワード"
-    %br/
-    = f.password_field :password, autocomplete: "off"
+  .form-group
+    .field
+      = f.label :email, "メールアドレス"
+      = f.email_field :email, autofocus: true, class:"form-control"
+  .form-group
+    .field
+      = f.label :password, "パスワード"
+      = f.password_field :password, autocomplete: "off", class:"form-control"
   - if devise_mapping.rememberable?
     .field
       = f.check_box :remember_me
@@ -15,7 +15,7 @@
       %br/
       %br/
   .actions
-    = f.submit "ログインする", class: "btn btn-info btn-lg"
+    = f.submit "ログインする", class: "btn btn-primary"
     %br/
     %br/
 = render "devise/shared/links"
