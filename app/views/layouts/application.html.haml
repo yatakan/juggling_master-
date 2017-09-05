@@ -12,6 +12,7 @@
       .container
         =link_to "ジャグリングマスター(アルファ版)", root_path, id:"logo"
         %p 練習の成果を共有、日記も書ける交流サイト。※開発中です。
+        .white.bars.float-right=fa_icon 'bars'
         %ul.nav.navbar-nav.navbar-right
           - if user_signed_in?
             %li
@@ -47,6 +48,10 @@
             = link_to about_records_path do
               =fa_icon 'question-circle'
               %span このサイトについて
+          %li.close-button.white
+            %a
+              = fa_icon 'window-close-o'
+              %span メニューを閉じる
     .container
       .padding-top
         = yield

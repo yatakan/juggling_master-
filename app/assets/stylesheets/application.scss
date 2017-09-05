@@ -7,7 +7,6 @@
 $gray-medium-light: #eaeaea;
 
 /* TOPページ */
-
 .top-image {
   width: 100%;
 }
@@ -40,6 +39,18 @@ $gray-medium-light: #eaeaea;
       opacity: 0.5
     }
   }
+}
+
+.white {
+  color: white;
+}
+
+.bars {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 20px;
+  margin: 10px 70px;
 }
 /* お知らせ */
 .message {
