@@ -1,22 +1,24 @@
 //中央にあるモデルはindexだと思うからrecords#index
 //TOPページです//
 
-= link_to new_record_path do
-  = image_tag 'gazo4.jpg', class:"top-image"
-.top-nav
-  = link_to new_record_path do
-    = fa_icon 'floppy-o'
-    %span 練習成果を記録をする
-  %span.after-second
-    = link_to search_records_path(all: "show") do
-      = fa_icon 'list'
-      %span 練習成果をみる
-    = link_to "https://youtu.be/T3EMVBkOCVg" do
-      =fa_icon "youtube"
-      %span 動画を見る
-    = link_to users_path do
-      = fa_icon 'list'
-      %span 利用者一覧を見る
+.margin
+  .top-image
+    = link_to new_record_path do
+      = image_tag 'gazo4.jpg'
+  .top-nav
+    = link_to new_record_path do
+      = fa_icon 'floppy-o'
+      %span 練習成果を記録をする
+    %span.after-second
+      = link_to search_records_path(all: "show") do
+        = fa_icon 'list'
+        %span 練習成果をみる
+      = link_to users_path do
+        = fa_icon 'list'
+        %span 利用者一覧を見る
+      = link_to "https://www.youtube.com/channel/UC58ySpPSJj601F5uAwpSu8A" do
+        =fa_icon "youtube"
+        %span 解説動画を見る
 .under-nav
   = link_to search_records_path(all: "show") do
     %h3.float-left
