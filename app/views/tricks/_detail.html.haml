@@ -9,24 +9,27 @@
       %th Comment
       %th User
     - records.each do |record|
-      = link_to record_path(record) do
-        %tr
-          %td #{record.date}
-          %td
-            = link_to search_records_path(trick_id: record.trick, number: record.number, category_id: record.category) do
-              #{record.number} #{record.category.material} #{record.trick.name}
-          %td
+      %tr
+        %td
+          = link_to record_path(record) do
+            #{record.date}
+        %td
+          = link_to record_path(record) do
+            #{record.number} #{record.category.material} #{record.trick.name}
+        %td
+          = link_to record_path(record) do
             #{record.catch} キャッチ
-          %td
+        %td
+          = link_to record_path(record) do
+            = fa_icon "external-link-square"
+        %td
+          = link_to graph_records_path(number: record.number, category_id: record.category_id, trick_id: record.trick_id, user_id: record.user.id) do
+            = fa_icon "bar-chart"
+        %td
+          - if record.text.present?
             = link_to record_path(record) do
-              = fa_icon "external-link-square"
-          %td
-            = link_to graph_records_path(number: record.number, category_id: record.category_id, trick_id: record.trick_id, user_id: record.user.id) do
-              = fa_icon "bar-chart"
-          %td
-            - if record.text.present?
               #{record.text}
-          %td
-            = link_to "#{record.user.name} さん", user_path(record.user)
+        %td
+          = link_to "#{record.user.name} さん", user_path(record.user)
 - else
   %p 該当するデータはありませんでした。

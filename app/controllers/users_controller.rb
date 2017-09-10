@@ -1,54 +1,35 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only: [:index]
   def index
     @users = User.all.page(params[:page]).per(10)
   end
 
   def show
-    @user = User.find(params[:id])
-    @records = @user.records.includes(:trick)
-    @catches = 0
-    @records.each do |record|
-      @catches += record.catch
-    end
-    @articles = @user.articles
+    set_user
+    @records = @user.records.includes(:trick).limit(15)
+    @articles = @user.articles.includes(:user).limit(15)
+    @catches = @user.catch_sum(@records)
   end
 
   def following
+    set_user
     @title = "フォローしている人"
-    @user  = User.find(params[:id])
     @users = @user.following
     render 'show_follow'
   end
 
   def followers
+    set_user
     @title = "フォローされている人"
-    @user  = User.find(params[:id])
     @users = @user.followers
     render 'show_follow'
   end
 
   def create
-    if env['omniauth.auth'].present?
-        # Facebookログイン
-        @user  = User.from_omniauth(env['omniauth.auth'])
-        result = @user.save(context: :facebook_login)
-        fb       = "Facebook"
-    else
-        # 通常サインアップ
-        @user  = User.new(strong_params)
-        result = @user.save
-        fb       = ""
-    end
-    if result
-        sign_in @user
-        flash[:success] = "#{fb}ログインしました。"
-        redirect_to @user
-    else
-        if fb.present?
-            redirect_to auth_failure_path
-        else
-            render 'new'
-        end
-    end
+  end
+
+  private
+  def set_user
+    @user = User.find(params[:id])
   end
 end

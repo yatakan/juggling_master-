@@ -13,12 +13,12 @@
 ActiveRecord::Schema.define(version: 20170904111752) do
 
   create_table "article_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "notice_type"
     t.text     "text",        limit: 65535
     t.integer  "user_id"
     t.integer  "article_id"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
-    t.integer  "notice_type",               default: 1
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.index ["article_id"], name: "index_article_comments_on_article_id", using: :btree
     t.index ["user_id"], name: "index_article_comments_on_user_id", using: :btree
   end
@@ -48,12 +48,12 @@ ActiveRecord::Schema.define(version: 20170904111752) do
   end
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "notice_type"
     t.text     "text",        limit: 65535
     t.integer  "user_id"
     t.integer  "record_id"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
-    t.integer  "notice_type",               default: 2
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.index ["record_id"], name: "index_comments_on_record_id", using: :btree
     t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end

@@ -10,11 +10,10 @@
     = fa_icon "pencil-square-o"
     %span コメントを書く
 %p
-  - if user_signed_in?
-    - if @record.user == current_user
-      = link_to "/records/#{@record.id}", method: :delete, data: { confirm: "削除してよろしいですか？"} do
-        = fa_icon "bomb"
-        %span 記録を削除する
+  - if user_signed_in? && @record.user == current_user
+    = link_to "/records/#{@record.id}", method: :delete, data: { confirm: "削除してよろしいですか？"} do
+      = fa_icon "bomb"
+      %span 記録を削除する
 %br
 %h3 この投稿へのコメント
 %table.table

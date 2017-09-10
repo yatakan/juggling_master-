@@ -8,10 +8,14 @@
       %th User
     - articles.each do |article|
       %tr
-        %td= article.created_at.strftime("%Y-%m-%d")
+        %td
+          = link_to article_path(article) do
+            = article.created_at.strftime("%Y-%m-%d")
         %td= link_to article.title, article_path(article)
         %td
           = link_to article_path(article) do
             = fa_icon "external-link-square"
-        %td= article.text
+        %td
+          = link_to article_path(article) do
+            = article.text
         %td= link_to "#{article.user.name} さん", user_path(article.user)
