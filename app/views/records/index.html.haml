@@ -1,4 +1,6 @@
-//中央にあるモデルはindexだと思うからrecords#index
+= provide(:title, "Home")
+
+//中央にあるモデル(データ操作)はindexだと思うからrecords#index
 //TOPページです//
 
 .margin
@@ -24,7 +26,7 @@
     %h3.float-left
       %span.font-bk 最近の記録
       = fa_icon "external-link-square"
-  = render partial:"tricks/detail", locals: { records: @records }
+  = render partial:"detail", locals: { records: @records }
   = link_to articles_path do
     %h3.float-left
       %span.font-bk 最近書かれた記事

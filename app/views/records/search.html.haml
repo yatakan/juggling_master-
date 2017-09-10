@@ -1,3 +1,5 @@
+= provide(:title, "練習成果を見る")
+
 %h2 記録をみる
 %p 全てのデータから絞り込み
 = form_tag search_records_path, method: :get do
@@ -13,5 +15,5 @@
 - if @name.present?
   = @name
 
-= render partial:"tricks/detail", locals: { records: @records }
+= render partial:"detail", locals: { records: @records }
 = paginate(@records)
