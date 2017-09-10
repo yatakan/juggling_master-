@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
   def index
-    @articles = Article.all.page(params[:page]).per(10)
+    @articles = Article.all.includes(:user).page(params[:page]).per(10)
   end
 
   def show

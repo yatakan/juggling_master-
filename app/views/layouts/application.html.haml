@@ -56,30 +56,7 @@
       .container
         .padding-top
           = yield
-      .message.bg-info
-        %div
-          %span.minus
-            %span
-              = fa_icon "minus-circle"
-            %span.text-info 通知
-          %ul
-            - if user_signed_in?
-              - if @notices.present?
-                - @notices.each do |notice|
-                  - if notice.notice_type == 1
-                    = link_to article_path(notice.article) do
-                      %li
-                        %span= notice.created_at.strftime("%Y-%m-%d %H:%M")
-                        %span=  "#{notice.user.name}さんがあなたの記事「#{notice.article.title} 」にコメントしました。"
-                  - if notice.notice_type == 2
-                    = link_to record_path(notice.record) do
-                      %li
-                        %span= notice.created_at.strftime("%Y-%m-%d %H:%M")
-                        %span= "#{notice.user.name}さんがあなたの#{notice.record.number} #{notice.record.category.material} #{notice.record.trick.name} #{notice.record.catch}キャッチについてコメントしました。"
-              - else
-                %p 新しい通知はありません。
-            - else
-              %p 今すぐ新規登録して新しいジャグリング生活を楽しみましょう！
+      = render partial: "layouts/notices", locals: { notices: @notices }
       .message2.border-bottom.bg-info.display-none
         %span.minus
           = fa_icon "plus-circle"

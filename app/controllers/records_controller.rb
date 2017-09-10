@@ -3,8 +3,8 @@ class RecordsController < ApplicationController
   def index
     ## ルートページです
     @comments = Comment.order('created_at DESC').limit(5)
-    @articles = Article.order('created_at DESC').limit(5)
-    @records = Record.order('created_at DESC').limit(5)
+    @articles = Article.order('created_at DESC').includes(:user).limit(5)
+    @records = Record.order('created_at DESC').includes(:trick).includes(:user).limit(5)
   end
 
   def show
