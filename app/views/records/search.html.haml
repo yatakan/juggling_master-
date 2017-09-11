@@ -15,5 +15,5 @@
 - if @name.present?
   = @name
 
-= render partial:"detail", locals: { records: @records }
+= render partial:"shared/detail", locals: { records: @records }
 = paginate(@records)

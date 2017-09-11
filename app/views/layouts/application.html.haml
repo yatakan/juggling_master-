@@ -3,7 +3,7 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title
-      = yield(:title)
+      = full_title(yield(:title))
       | ジャグリングの練習記録
     = csrf_meta_tags
     = include_gon

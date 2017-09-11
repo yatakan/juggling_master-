@@ -1,7 +1,7 @@
 = provide(:title, "記録の詳細")
 
 %h2 この記録の詳細
-= render partial:"detail", locals: { records: @records }
+= render partial:"shared/detail", locals: { records: @records }
 %h3 メニュー
 %p
   = link_to graph_records_path(number: @record.number, category_id: @record.category_id, trick_id: @record.trick_id, user_id: @record.user.id) do

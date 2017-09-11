@@ -26,9 +26,9 @@
     %h3.float-left
       %span.font-bk 最近の記録
       = fa_icon "external-link-square"
-  = render partial:"detail", locals: { records: @records }
+  = render partial:"shared/detail", locals: { records: @records }
   = link_to articles_path do
     %h3.float-left
       %span.font-bk 最近書かれた記事
       = fa_icon "external-link-square"
-  = render partial:"articles/article-list", locals: { articles: @articles}
+  = render partial:"shared/article-list", locals: { articles: @articles}

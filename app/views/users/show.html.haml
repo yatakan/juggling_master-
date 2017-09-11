@@ -1,4 +1,4 @@
-= provide(:title, "マイページ")
+= provide(:title, "ユーザーページ")
 
 %h2 #{@user.name}さんのマイページ
 - if user_signed_in?
@@ -27,7 +27,7 @@
 %p #{@catches}
 - if @records.present?
   %h3 #{@user.name}さんの最近の達成
-  = render partial:"records/detail", locals: { records: @records }
+  = render partial:"shared/detail", locals: { records: @records }
 - if @articles.present?
   %h3 #{@user.name}さんが書いた記事
   %table.table
@@ -37,4 +37,4 @@
       %th Text
       %th User
       %th View
-  = render partial:"articles/article-list", locals: { articles: @articles }
+  = render partial:"shared/article-list", locals: { articles: @articles }
