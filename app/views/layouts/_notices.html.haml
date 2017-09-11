@@ -21,4 +21,13 @@
         - else
           %p 新しい通知はありません。
       - else
-        %p 今すぐ新規登録して新しいジャグリング生活を楽しみましょう！
+        %ul
+          %li ログインしていません。
+          %li
+            = link_to new_user_registration_path do
+              =fa_icon 'user-o'
+              %span ユーザー登録
+          %li
+            = link_to new_user_session_path do
+              =fa_icon 'user-circle'
+              %span ログインする
