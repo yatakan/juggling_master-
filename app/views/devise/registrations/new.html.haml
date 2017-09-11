@@ -1,21 +1,23 @@
 %h2 新規ユーザー登録
+%p 誰でも自由に使えるウェブアプリです！
+%p 登録すれば簡単に始められます。
 = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
   = devise_error_messages!
   .form-group
     .field
       = f.label :name, "ニックネーム（必須）"
-      = f.text_field :name, placeholder:"あなたのニックネーム又は本名", autofocus: true, size:"50", class:"form-control"
+      = f.text_field :name, placeholder:"あなたのニックネーム", autofocus: true, size:"50", class:"form-control"
   .form-group
     .field
       = f.label :material, "主に練習している道具（必須）"
-      = f.text_field :material, size:"50", class:"form-control"
+      = f.text_field :material, size:"50", class:"form-control", placeholder:"ボール、クラブ"
   .form-group
     .field
-      = f.label :club, "所属しているチーム又はサークル"
+      = f.label :club, "所属しているチーム又はサークル（空欄可）"
       = f.text_field :club, placeholder: "所属している場合、教えてください！", size:"50", class:"form-control"
   .form-group
     .field
-      = f.label :text, "自己紹介"
+      = f.label :text, "自己紹介（空欄可）"
     = f.text_area :text, placeholder: "アピールしたいこと", size:"50x20", class:"form-control"
   .form-group
     .field
@@ -26,7 +28,7 @@
       = f.label :password, "希望するパスワード（必須）"
       - if @minimum_password_length
         %em
-          (#{@minimum_password_length} characters minimum)
+          (#{@minimum_password_length} 文字以上)
       = f.password_field :password, autocomplete: "off", size:"50", class:"form-control"
   .form-group
     .field
