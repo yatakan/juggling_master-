@@ -1,7 +1,7 @@
 //ユーザー登録
 %h2 新規ユーザー登録
 %p 誰でも自由に使えるウェブアプリです！
-%p 名前とメールアドレスとパスワードを決めるだけです！
+%p あなたのニックネームと、お持ちのメールアドレスと好きなパスワードを登録してください。
 = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
   = devise_error_messages!
   .form-group
