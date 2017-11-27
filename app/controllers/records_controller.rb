@@ -53,7 +53,7 @@ class RecordsController < ApplicationController
 
   def search
     if params[:all] == "show"
-      @records = Record.all.includes(:user).page(params[:page]).per(10)
+      @records = Record.order('created_at DESC').includes(:user).page(params[:page]).per(10)
       @number = 3
       set_records_variables
     else
@@ -72,7 +72,7 @@ class RecordsController < ApplicationController
     @category = Category.find(params[:category_id])
     @number = params[:number]
     @user = User.find(params[:user_id])
-    @records = @trick.records.where(user_id: @user.id).where(number: @number).where(category_id: @category).limit(30)
+    @records = @trick.records.order('date ASC').where(user_id: @user.id).where(number: @number).where(category_id: @category).limit(30)
     ####ここがうまく動くか試していない###
 
     @trick_name = "#{@number}#{@category.material}#{@trick.name}"
