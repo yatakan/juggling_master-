@@ -6,8 +6,8 @@ class UsersController < ApplicationController
 
   def show
     set_user
-    @records = @user.records.includes(:trick).limit(15)
-    @articles = @user.articles.includes(:user).limit(15)
+    @records = @user.records.order('date DESC').includes(:trick).limit(15)
+    @articles = @user.articles.order('created_at DESC').includes(:user).limit(15)
     @catches = @user.catch_sum(@records)
   end
 
