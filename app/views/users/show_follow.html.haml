@@ -1,4 +1,4 @@
-= provide(:title, "フォロー")
+= provide(:title, "お気に入り")
 
 = @title
 - if @users.any?
@@ -6,4 +6,4 @@
     - @users.each do |user|
       %li= link_to user.name, user_path(user)
 - else
-  %p まだフォローしている人はいません。
+  %p まだお気に入りに追加されていません。

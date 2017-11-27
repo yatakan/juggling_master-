@@ -23,11 +23,4 @@
   = render partial:"shared/detail", locals: { records: @records }
 - if @articles.present?
   %h3 #{@user.name}さんが書いた記事
-  %table.table
-    %tr
-      %th Day
-      %th Title
-      %th Text
-      %th User
-      %th View
   = render partial:"shared/article-list", locals: { articles: @articles }
